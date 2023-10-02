@@ -1,12 +1,12 @@
-{--Programa Python
---Ejemplo
+{#Programa Python
+Ejemplo
 problema suma2(x : Z, y : Z) : Z{
 asegura: res = x + y
 }
 def suma2 (x: int, y: int) -> int:
 res: int = x + y
 return res 
---}
+#} 
 
 {--ASIGNACIÓN : Es la operaci´on fundamental para modificar el valor de una variable.
 ▶ Sintaxis: variable = expresi´on;
@@ -35,5 +35,10 @@ return res
 def suma2 (x: int, y: int) -> int:
 return x + y 
 --}
+
+
+--para ejecutar python : python3 -> import archivo -> test.funcion(), para salir es Ctrl-d --
+
+
 
 
