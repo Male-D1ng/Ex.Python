@@ -41,4 +41,23 @@ La función saldo_positivoGIT funciona porque has utilizado una comprensión de 
 La diferencia clave entre esta función y la versión anterior que no funcionaba está en cómo se construye la lista ingresos. En la versión que funciona, se seleccionan las tuplas completas que representan los ingresos ('I') y luego se utiliza la función suma_monto para sumar los montos de esas tuplas.
 En resumen, la función saldo_positivoGIT funciona porque está construida de manera adecuada para seleccionar y sumar los montos de ingreso de la lista s.
 
+	• por que no funcionaba esta funcion? se puede arreglar? 
+
+def saldo_positivo(s: list[tuple[str, int]]) -> int:
+    ingresos = []
+    for movimiento in s:
+        if movimiento[0] == 'I':
+            ingresos.append(movimiento[1])
+    return suma_monto(segundos_valores(ingresos))
+
+La función que proporcionaste no funcionaba correctamente debido a la forma en que estabas calculando el saldo positivo. La función suma_monto(segundos_valores(ingresos)) intenta calcular la suma de los valores de ingresos, pero la función segundos_valores se utiliza para obtener los segundos valores de las tuplas, y en este caso, no era necesario.
+
+
+	• por que no funciona esta reescritura de la funcionq me pasaste? def saldo_positivo (s:list[tuple[str,int]])-> int:
+   ingresos :list =[]
+   for movimiento in s:
+     if movimiento[0] == 'I': ingresos = [movimiento [1]]
+   return suma_monto(segundos_valores((ingresos)))
+
+El problema en tu versión de la función saldo_positivo es que estás reemplazando la lista ingresos en cada iteración del bucle for, en lugar de agregar los valores de ingreso a la lista existente. Como resultado, la variable ingresos siempre contendrá solamente el último valor de ingreso encontrado en la lista s.
 
