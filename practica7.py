@@ -246,4 +246,26 @@ def quitar_letras_repetidas(s: str) -> str:
     return resultado
 
 #PARTE 3
-#ej1: 
+#ej1: quiero conocer el estado de aprobacion
+def promedio(notas:[int])->float:
+    sumaNotas:int=0
+    for nota in notas:
+        sumaNotas+=nota
+    promedio:float=sumaNotas/len(notas)
+    return promedio
+
+def todasLasNotasSonMayoresQue4(notas:[int])->bool:
+    for nota in notas:
+        if nota<4:
+            return False
+    return True
+        
+def aprobado(notas:[int])->int:
+    if (todasLasNotasSonMayoresQue4(notas) and promedio(notas)>=7):
+        return 1
+    elif (todasLasNotasSonMayoresQue4(notas) and 4<=promedio(notas)<7):
+        return 2
+    elif (not(todasLasNotasSonMayoresQue4(notas)) or promedio(notas)<4):
+        return 3
+
+
