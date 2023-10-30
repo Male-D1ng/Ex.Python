@@ -268,4 +268,22 @@ def aprobado(notas:[int])->int:
     elif (not(todasLasNotasSonMayoresQue4(notas)) or promedio(notas)<4):
         return 3
 
+#ej corregido del 3.1
+def aprobado(notas: list[int]) -> int:
+    total_notas: int = 0
+
+    for nota in notas:
+        total_notas += nota
+
+        if nota < 4:
+            return 3  # Si alguna nota es menor a 4, el estudiante no aprueba de inmediato.
+
+    promedio: float = total_notas / len(notas)
+
+    if promedio < 4:
+        return 3
+    elif promedio >= 7:
+        return 1
+    else:
+        return 2
 
