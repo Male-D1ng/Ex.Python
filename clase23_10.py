@@ -29,7 +29,7 @@ def ClonarSinComentarios (nombre_archivo : str):
   archivo.close # lo cierro
   archivo_sin_coment.close #lo cierro
   
-ClonarSinComentarios ("archivoComentadopy")
+ClonarSinComentarios ("archivoComentado.py")
 
 #Pilas y Colas. Pilas: Una pila es una lista de elementos de la cual se puede extraer el ´ultimo elemento insertado, es del tipo lista LIFO, podemos importar el modulo LifoQueue que nos da una implementacion de Pila
 #
@@ -62,7 +62,7 @@ def buscar_max (p:Pila) -> int :
 
   return maximo
 
-print ("el max de la fila es :", buscar:max(p))
+print ("el max de la fila es :", buscar_max(p))
 
 
 #forma profe 2
