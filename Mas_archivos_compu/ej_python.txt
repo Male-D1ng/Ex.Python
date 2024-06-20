@@ -1,0 +1,44 @@
+﻿EJERCICIOS PYTHON
+
+    • que cosas estoy definiendo mal en esta? 
+
+def saldo_positivo (s:list[tuple[str,int]])-> int: 
+	ingresos :int = 0 
+	for movimiento in s: 
+		if movimiento[0] == 'I': 
+			ingresos = suma_monto(segundos_valores(s)) 
+			return ingresos 
+		else: break
+
+PROBLEMAS:
+
+    1. En lugar de acumular los valores de ingreso, estás sobrescribiendo la variable ingresos en cada iteración del bucle. Esto significa que ingresos contendrá el resultado de la última suma de ingresos encontrados en la lista s. Debes acumular los valores de ingreso en lugar de sobrescribir la variable.
+    2. No estás manejando los retiros ('R') en absoluto en esta función. La función debería calcular el saldo positivo al sumar los ingresos ('I') y restar los retiros ('R').
+    3. La llamada a suma_monto(segundos_valores(s)) calcula la suma de todos los movimientos en la lista s, en lugar de solo los ingresos. Esto es incorrecto para el cálculo del saldo positivo.
+
+    • PROBLEMAS EN EL EJ
+
+def saldo_positivo (s:list[tuple[str,int]])-> int: 
+	ingresos :list = [] 
+	for movimiento in s: 
+		if movimiento[0] == 'I': 
+			ingresos.append(segundos_valores(s)) 
+			return suma_monto(ingresos) 
+		else: break
+
+La función saldo_positivo que has proporcionado aún tiene algunos problemas:
+    1. En lugar de acumular los valores de ingreso, estás agregando la lista completa de valores de ingreso a la lista ingresos en cada iteración del bucle. Esto no es necesario, ya que puedes acumular directamente los valores de ingreso en una variable numérica, como se muestra en la corrección que te proporcioné anteriormente.
+    2. La función segundos_valores(s) no debería utilizarse dentro del bucle para cada movimiento. En su lugar, debes utilizar el valor del movimiento actual en el cálculo.
+    3. La declaración return se encuentra dentro del bucle, lo que significa que la función se detendrá y devolverá un resultado después de la primera iteración, lo cual no es lo que deseas.
+
+    • por que esta si funciona? 
+
+def saldo_positivoGIT (s: list[tuple[str, int]]) -> int: 
+	ingresos = [movimiento for movimiento in s if movimiento[0] == 'I'] 	monto_ingresos = suma_monto(segundos_valores(ingresos)
+	return monto_ingresos
+                                           
+
+La función saldo_positivoGIT funciona porque has utilizado una comprensión de lista para crear la lista ingresos, y luego calculas la suma de los montos de ingreso utilizando la función suma_monto. En este caso, has creado la lista ingresos directamente con las tuplas completas que representan los ingresos ('I').
+La diferencia clave entre esta función y la versión anterior que no funcionaba está en cómo se construye la lista ingresos. En la versión que funciona, se seleccionan las tuplas completas que representan los ingresos ('I') y luego se utiliza la función suma_monto para sumar los montos de esas tuplas.
+En resumen, la función saldo_positivoGIT funciona porque está construida de manera adecuada para seleccionar y sumar los montos de ingreso de la lista s.
+

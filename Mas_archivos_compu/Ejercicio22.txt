@@ -1,0 +1,34 @@
+##Ejercicio 22
+from queue import LifoQueue
+pila=LifoQueue()
+pila2= LifoQueue()
+pila3=LifoQueue()
+
+historiales:dict={"Rocio": pila, "Maria": pila2, "Jose":pila3}
+adelante = {"Rocio": LifoQueue()}
+
+def visitar_sitio(historiales, usuario:str, sitio:str):
+
+    if usuario in historiales:
+         historiales[usuario].put(sitio)
+    else:
+         print(f"El usuario {usuario} no existe en los historiales.")
+
+
+def navegar_atras(historiales, adelante, usuario:str):
+         if usuario in historiales and not historiales[usuario].empty():
+            sitio=historiales[usuario].get()
+            adelante[usuario].put(sitio)
+            print(f"{usuario} ha navegado hacia atrás desde {sitio}")
+         else:
+            print(f"{usuario} no puede navegar hacia atrás")
+ 
+
+def navegar_adelante(historiales,adelante,usuario):
+     
+     if usuario in adelante and not adelante[usuario].empty():
+        sitio = adelante[usuario].get()
+        historiales[usuario].put(sitio)
+        print(f"{usuario} ha navegado hacia adelante a {sitio}")
+     else:
+        print(f"{usuario} no puede navegar hacia adelante")
