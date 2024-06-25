@@ -230,8 +230,9 @@ def jugar_carton_de_bingo(carton:[int], bolillero:Cola(int)) -> int:
         res += 1
     return res 
 """
-#CONSULTAAA
-def jugar_carton_de_bingo (carton: [int], bolillero: Cola(int)) -> int:
+#CONSULTAAAR, COMO LOGRAR HACER UN CARTON DE SOLO 12 NROS, HACE FALTA ACLARAR QUE LA LISTA ES DE SOLO 12 NROS?
+
+def jugar_carton_de_bingo (carton: list[int], bolillero: Cola[int]) -> int:
     cantSinMarcar: int = len (carton)
     temp = []
     res = 0
@@ -239,7 +240,7 @@ def jugar_carton_de_bingo (carton: [int], bolillero: Cola(int)) -> int:
     while cantSinMarcar > 0: # no hace falta ver si bolillero esta vacio
         bolilla: int = bolillero.get()
         temp.append(bolilla)
-        if bolilla in carton: # Vamos a permitir que usen in en listas también. <---
+        if bolilla in carton: 
             cantSinMarcar -=1
         res += 1
 
@@ -250,6 +251,5 @@ def jugar_carton_de_bingo (carton: [int], bolillero: Cola(int)) -> int:
     
 carton=[0,99]
 b = armar_secuencia_bingo2()
-#print(de_cola_a_lista(b))
 print("Para ganar la cantidad de jugadas es ",jugar_carton_de_bingo(carton, b))
 
