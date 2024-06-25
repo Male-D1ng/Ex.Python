@@ -253,3 +253,28 @@ carton=[0,99]
 b = armar_secuencia_bingo2()
 print("Para ganar la cantidad de jugadas es ",jugar_carton_de_bingo(carton, b))
 
+#me da el error de que int no es subscriptable
+def n_pacientes_urgentes(c: Cola[(int, str, str)]) -> int:
+    res: int = 0
+    aux: list[(int, str, str)] = []
+    while not c.empty():
+        paciente: (int, str, str) = c.get()
+        aux.append(paciente)
+        if paciente[0] <= 3:
+            res += 1
+    for elem in aux:
+        c.put(elem)
+    return res
+
+cola_todos_urgentes = Cola()
+cola_todos_urgentes.put((1, "Paciente A", "Cardiología"))
+cola_todos_urgentes.put((2, "Paciente B", "Neurología"))
+cola_todos_urgentes.put((3, "Paciente C", "Pediatría"))
+cola_todos_urgentes.put(1, "Paciente D", "Traumatología")
+
+
+print(n_pacientes_urgentes2(cola_todos_urgentes))
+
+
+
+
