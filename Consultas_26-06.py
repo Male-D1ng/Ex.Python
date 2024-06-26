@@ -276,5 +276,152 @@ cola_todos_urgentes.put(1, "Paciente D", "Traumatología")
 print(n_pacientes_urgentes2(cola_todos_urgentes))
 
 
+"""
+from queue import LifoQueue as Pila 
+from queue import Queue as Cola
+import random
 
+def pertenece1(s:list, e) -> bool: 
+    i:int = 0 
+    while i < len(s):
+        if s[i] == e:
+            return True
+        i += 1
+    return False
+
+def armar_secuencia_bingo2() -> Cola[int]:
+    secuencia: Cola = Cola()
+    elementos:list[int] = list(range(100)) # Pero se puede usar range()? igualmente sería una lista del 0 al 99
+    random.shuffle(elementos) #
+
+    #for i in range(12):
+    #    algo .. <-- elementos[i]
+
+    for elemento in elementos:
+        secuencia.put(elemento)
+    return secuencia
+
+#print(de_cola_a_lista(armar_secuencia_bingo2()))
+
+
+
+def jugar_carton_de_bingo (carton: list[int], bolillero: Cola[int]) -> int:
+    cantSinMarcar: int = len (carton)
+    temp = []
+    res = 0
+
+    while cantSinMarcar > 0: # no hace falta ver si bolillero esta vacio
+        bolilla: int = bolillero.get()
+        temp.append(bolilla)
+        if bolilla in carton: 
+            cantSinMarcar -=1
+        res += 1
+
+    for num in temp: # regenero el bolillero
+        bolillero.put(num)
+
+    return res 
+    
+#carton=[0,99] ESTO ESTA MAL
+
+def armar_carton() -> list[int]:
+    carton:list = []
+    elementos:list[int] = list(range(100))
+    random.shuffle(elementos)
+    for i in range(12):
+        carton.append(elementos[i])
+    return carton 
+
+print(armar_carton())
+
+
+b = armar_secuencia_bingo2()
+c = armar_carton()
+print("Para ganar la cantidad de jugadas es ",jugar_carton_de_bingo(c, b))
+
+
+#me da el error de que int no es subscriptable
+def n_pacientes_urgentes(c: Cola[tuple[int, str, str]]) -> int:
+    res: int = 0
+    aux: list[(int, str, str)] = []
+    while not c.empty():
+        paciente: tuple [int, str, str] = c.get()
+        aux.append(paciente)
+        if paciente[0] <= 3:
+                res += 1
+    for elem in aux:
+        c.put(elem)
+    return res
+
+cola_todos_urgentes = Cola()
+cola_todos_urgentes.put((1, "Paciente A", "Cardiología"))
+cola_todos_urgentes.put((2, "Paciente B", "Neurología"))
+cola_todos_urgentes.put((3, "Paciente C", "Pediatría"))
+cola_todos_urgentes.put((1, "Paciente D", "Traumatología"))
+
+
+print(n_pacientes_urgentes(cola_todos_urgentes))
+
+
+def invertida(l:list[int]) -> list[int]:
+    invertida:list[int] = []
+    i  = len(l) - 1
+    while i >= 0:
+        invertida.append(l[i])
+        i -= 1
+    return invertida
+    
+l = [1,2,3,4,5,6]
+
+print (invertida(l))
+
+
+"""
+    requiere: {No hay valores en horas que sean listas vacías}
+    asegura: {Si ID pertence a res entonces ID pertence a las claves de horas}
+    asegura: {Si ID pertenece a res, la suma de sus valores de horas es el máximo de la suma de elementos de horas de todos los otros IDs}
+    asegura: {Para todo ID de claves de horas, si la suma de sus valores es el máximo de la suma de elementos de horas de los otros IDs, entonces ID pertences a res}
+"""
+"""     
+def empleados_del_mes(horas: dict[int,list[int]])->list[int]:
+    lista_empleados_del_mes:list[int]= []
+    maximo:int = 0
+    lista_id = list[horas.keys()]
+    lista_de_listahoras = list[horas.values()]
+    lista_horas_sumadas = horas_hechas
+"""
+
+"""
+    for id in horas.keys():
+        id[horas] = horas_hechas(horas)
+        if maximo < horas:
+            maximo = horas
+            lista_empleados_del_mes.append(maximo)
+    return lista_empleados_del_mes
+    """
+
+
+def horas_hechas(lista:list[int])->int:
+    res:int = 0 
+    i:int = 0
+    while i < len(lista):
+        res +=lista[i]
+        i += 1
+    return res 
+print('horas_hechas es ',horas_hechas([2,2,2]))
+
+def maximo(lista:list[int])->int:
+    res: int = 0
+    for i in lista:
+        if res < i:
+            res = i
+    return res
+
+print('el max es ', maximo([1,2,3]))
+
+ 
+
+dict = {1:'hola',2:'hol',3:'ola'}
+print(list(dict.values()))
+"""
 
