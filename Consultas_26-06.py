@@ -433,16 +433,15 @@ from queue import LifoQueue as Pila
 historiales: dict = {}
 
 def visitar_sitio(historiales:dict, usuario:str, sitio:str) -> None:
-    if usuario in historiales.keys():
-        historiales[usuario].put(sitio)
-    else:
-        p:Pila[str] = historiales[usuario]
-        p.put(sitio)
+    if not usuario in historiales:
+         historiales[usuario] = Pila ()
+        
+    for usuario in historiales.keys():
+         historiales[usuario].put(sitio)
+        
     return historiales
-
-    
-    return historiales
-#ALGO NO ANDA EN VISITAR SITIO
+     
+#ALGO NO ANDA EN LOS VALUES, NO ME DA BIEN
 
 #Cambiar la pila por lista para probar con los siguientes casos
 print(visitar_sitio(historiales, "anita", "Sitio1"))
