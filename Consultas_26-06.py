@@ -399,7 +399,7 @@ def empleados_del_mes(horas: dict[int,list[int]])->list[int]:
             lista_empleados_del_mes.append(maximo)
     return lista_empleados_del_mes
     """
-
+ESTA RARO, NO ANDA LO DE EMPLEADOS DEL MES, REHACER
 
 def horas_hechas(lista:list[int])->int:
     res:int = 0 
@@ -424,4 +424,48 @@ print('el max es ', maximo([1,2,3]))
 dict = {1:'hola',2:'hol',3:'ola'}
 print(list(dict.values()))
 """
+#-------------------------------------------------------------------------------------------------------------------------------------DICCIONARIOS, SOLO EJ 22 Y 23
+#EJ 22
+from queue import Queue as Cola
+import random
+from queue import LifoQueue as Pila
+
+historiales: dict = {}
+
+def visitar_sitio(historiales:dict, usuario:str, sitio:str) -> None:
+    if usuario in historiales.keys():
+        historiales[usuario].put(sitio)
+    else:
+        p:Pila[str] = historiales[usuario]
+        p.put(sitio)
+    return historiales
+
+    
+    return historiales
+#ALGO NO ANDA EN VISITAR SITIO
+
+#Cambiar la pila por lista para probar con los siguientes casos
+print(visitar_sitio(historiales, "anita", "Sitio1"))
+print(visitar_sitio(historiales, "marcos", "Sitio1"))
+print(visitar_sitio(historiales, "anita", "Sitio3"))
+print(visitar_sitio(historiales, "marcos", "Sitio2"))
+"""
+#print(navegar_atras(historiales, "anita"))
+#print(navegar_atras(historiales, "marcos"))
+"""
+
+def navegar_atras(historiales:dict, usuario:str) -> None:
+    for pilas in historiales.values():
+        paux = Pila()
+        while not pilas.empty():
+            p:Pila[str] = historiales[usuario]
+            sitio_actual:str = p.get()
+            sitio_anterior:str = p.get()
+            paux.put(sitio_actual)
+            paux.put(sitio_anterior)
+        while not paux.empty():
+            pilas.put(paux.get())
+    return historiales
+
+
 
