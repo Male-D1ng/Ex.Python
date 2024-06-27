@@ -440,10 +440,7 @@ def visitar_sitio(historiales:dict, usuario:str, sitio:str) -> None:
          historiales[usuario].put(sitio)
         
     return historiales
-     
-#ALGO NO ANDA EN LOS VALUES, NO ME DA BIEN
 
-#Cambiar la pila por lista para probar con los siguientes casos
 print(visitar_sitio(historiales, "anita", "Sitio1"))
 print(visitar_sitio(historiales, "marcos", "Sitio1"))
 print(visitar_sitio(historiales, "anita", "Sitio3"))
@@ -465,6 +462,125 @@ def navegar_atras(historiales:dict, usuario:str) -> None:
         while not paux.empty():
             pilas.put(paux.get())
     return historiales
+#----------------------------------------------------------------------------------VERSION TOMAS, OSEA ANDA PERO ES MUYY RARA
+#EJ 22
+from queue import LifoQueue as Pila
+
+"""
+historiales: dict = {}
+
+def visitar_sitio(historiales:dict, usuario:str, sitio:str):
+    if not usuario in historiales:
+        historiales[usuario] = Pila()
+    
+    for usuario in historiales.keys():
+      historiales[usuario].put(sitio)
+    
+
+#Cambiar la pila por lista para probar con los siguientes casos
+#print(visitar_sitio(historiales, "anita", "Sitio1"))
+
+#print(visitar_sitio(historiales, "anita", "Sitio3"))
+
+"""
+#print(navegar_atras(historiales, "anita"))
+#print(navegar_atras(historiales, "marcos"))
+"""
+
+def navegar_atras(historiales:dict, usuario:str) -> None:
+    for pilas in historiales.values():
+        paux = Pila()
+        while not pilas.empty():
+            p:Pila[str] = historiales[usuario]
+            sitio_actual:str = p.get()
+            sitio_anterior:str = p.get()
+            #paux.put(sitio_actual)
+            #paux.put(sitio_anterior)
+            pilas.put(sitio_actual)
+            pilas.put(sitio_anterior)
+
+def navegar_atras(historiales:dict, usuario:str) -> None:
+   for user in historiales.keys():
+      if user == usuario:
+          p:Pila[str] = historiales[user]
+          sitio_actual:str = p.get()
+          sitio_anterior:str = p.get()
+          historiales[user].put(sitio_actual)
+   
+
+#LOS BENDITOS CASOS DE TEST
+visitar_sitio(historiales, "marcos", "Sitio1")
+visitar_sitio(historiales, "marcos", "Sitio2")
+print(historiales["marcos"].queue)
+navegar_atras(historiales, "marcos")
+print(historiales["marcos"].queue)
+
+#-------------------------------------------------------------------------------------------
+
+#23
+"""
+1. Implementa una funcion llamada agregar producto(inout inventario, in nombre, in precio, in cantidad) que
+permita agregar un nuevo producto al inventario. El nombre del producto debe ser la clave del diccionario, y el valor debe
+ser otro diccionario con las claves “precio” y “cantidad”. Como requisito de esta funcion el producto a agregar no esta en
+el inventario.
+2. Implementa una funcion llamada actualizar stock(inout inventario, in nombre, in cantidad) que permita actua-
+lizar la cantidad de un producto existente en el inventario.
+3. Implementa una funcion llamada actualizar precios(inout inventario, in nombre, in precio) que permita actua-
+lizar el precio de un producto existente en el inventario.
+4. Implementa una funcion llamada calcular valor inventario(in inventario) → float que calcule el valor total del
+inventario multiplicando el precio por la cantidad de cada producto y sumando los valores de todos los productos.
+"""
+inventario = {}
+
+def agregar_producto (inventario: dict, nombre:str, precio : int, cantidad:int)-> dict[str,dict[str,int]]:
+    #dictAux : dict [str,int]= {}
+    if not nombre in inventario:
+        inventario[nombre] = {'precio':precio, 'cantidad':cantidad}
+    return inventario
+
+def actualizar_stock (inventario:dict,nombre:str, cantidad:int)-> dict[str,dict[str,int]]:
+    for producto in inventario:
+        if producto == nombre:
+            inventario[nombre]['cantidad']= cantidad
+    return inventario
+
+def actualizar_precios (inventario:dict,nombre:str, precio:int)-> dict[str,dict[str,int]]:
+    for producto in inventario:
+        if producto == nombre:
+            inventario[nombre]['precio']= precio
+    return inventario
+    
+def calcular_inventario (inventario:dict[str,dict[str,int]])-> float:
+    res:float=0
+    cantidad: float
+    precio:float
+    for nombre in inventario:
+        cantidad=float(inventario[nombre]['cantidad'])
+        precio=float(inventario[nombre]['precio'])
+        res += float(cantidad*precio)
+    return res 
+
+
+
+item1 = input ("el item1 es: ")
+precio1 = input ("el item1 vale: ")
+cantidad1 = input ("cantidad del item1: ")
+item2 = input ("el item2 es: ")
+precio2 = input("el item2 vale: ")
+cantidad2 = input ("cantidad del item2: ")
+agregar_producto(inventario, item1, precio1, cantidad1)
+agregar_producto(inventario, item2, precio2, cantidad2) 
+"""
+print("el inventario es: ", inventario)
+nombre = input("Actualizo el stock de ")
+cantidad = input ("Ahora tengo: ")
+print("ahora el stock es :", actualizar_stock(inventario,nombre,cantidad))
+nombre = input("Actualizo el precio de ")
+precio = input ("Ahora vale: ")
+print("ahora el producto vale :", actualizar_precios(inventario,nombre,precio))
+"""
+print("el valor del inventario es : ", calcular_inventario(inventario))
+
 
 
 
