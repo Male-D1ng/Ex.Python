@@ -1,4 +1,4 @@
-{#Programa Python Ejemplo 
+#Programa Python Ejemplo 
  # problema suma2(x : Z, y : Z) : Z{
   #  asegura: res = x + y
   #}
