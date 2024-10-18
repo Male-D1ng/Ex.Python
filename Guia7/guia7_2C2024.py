@@ -97,3 +97,34 @@ def hayNum (n:int)-> bool:
           return False
 
 
+def cuenta_bancaria(lista_tuplas:list[tuple[str,float]])-> float:
+     saldo_actual:float = 0
+     for tupla in lista_tuplas:
+          if tupla[0] == "I":
+               saldo_actual += tupla[1]
+          elif tupla[0] == "R":
+               saldo_actual -= tupla [1]
+     return saldo_actual
+
+print(cuenta_bancaria([("I",2000),("R",20),("I",20)]))
+
+
+def pertenece_a_cada_uno_v2 (s:list[list[int]],e:int, res:list[bool]):
+     for i in range(0, len(s), 1):
+          if pertenece(s[i],e):
+               res[i] = True
+          else:
+               res[i] = False
+
+res: list[bool] = [True, False, False]
+print(res)
+
+pertenece_a_cada_uno_v2([[1,2],[2,3],[3]], 3, res)
+
+print(res)
+
+
+"""
+for lista in listas:
+     len(listas[0])== len (lista)
+"""
