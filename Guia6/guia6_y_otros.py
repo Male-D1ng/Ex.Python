@@ -268,7 +268,8 @@ def suma_matriz_fila_cola (fila: int, columna: int) -> int:
 print (suma_matriz_fila_cola (2,2))
 
 
-#EJERCICIO 6
+#EJERCICIO 6 --DATO = las funciones q no le paso variable se hacen x consola, ej guia_y_otros.numeros_1_a_10, si le hago un print me devuleve None
+#tbien funciona si pongo directamente el nombre de la funcion debajo de la funcion
 
 #Ejercicio 6.1
 
@@ -278,7 +279,8 @@ def numeros_1_a_10():
         print(numero)
         numero += 1
     return
-
+numeros_1_a_10()
+    
 #Eejercicio 6.2
 
 def pares_entre_numeros() -> int:
@@ -288,6 +290,7 @@ def pares_entre_numeros() -> int:
             print(numero)
         numero += 1
     return
+pares_entre_numeros()
 
 #Ejercicio 6.3
 
@@ -297,6 +300,7 @@ def eco_10_veces():
         print("ECO")
         numero += 1
     return
+eco_10_veces()
 
 #Ejercicio 6.4
 
@@ -334,8 +338,66 @@ def viaje_aristoteles(anio_partida:int, anio_llegada:int) -> str:
 
     return 
 
-#Ejercicio 7 TODO
+#Ejercicio 7 el 6 pero con for range
 
+#Ejercicio 7.1
+
+def numeros_1_10 ():
+    for num in range(1,11,1):
+        print (num)
+
+#Ejercicio 7.2
+def num_pares():
+    for num in range (10,41,2):
+        print (num)
+num_pares()
+
+#Ejercicio 7.3
+def ecos_x_10():
+    for frase in range(1,11,1):
+        frase:str = "Ecoo"
+        print(frase)
+ecos_x_10()
+
+#Ejercicio 7.4
+def rocket():
+    conteo:int= 10
+    while conteo >= 1:
+        print (conteo)
+        conteo -=1
+    print("Despeguee")
+rocket()
+
+#Ejercicio 7.5
+"""
+Dicha función recibe dos parámetros, “el año de partida” y
+“algún año de llegada”, siendo este último parámetro siempre más chico que el primero. El viaje se realizará de a saltos
+de un año y la función debe mostrar el texto: “Viajó un año al pasado, estamos en el año: <año>”
+"""
+
+def viajes_en_el_tiempo(partida:int,llegada:int):
+    for años in range(partida,llegada-1,-1):
+        if llegada < partida:
+            print ("Viajó un año al pasado, estamos en el año = ", años)
+    return "Llegamos" 
+print(viajes_en_el_tiempo(2024,2021))
+
+#Ejercicio 7.6
+"""
+Implementar de nuevo la función de monitoreo de viaje en el tiempo, pero desde el año de partida hasta lo más cercano
+al 384 a.C., donde conoceremos a Aristóteles. Y para que sea más rápido el viaje, ¡vamos a viajar de a 20 años en cada
+salto!
+"""
+def conoci_a_Ari(partida:int,año:int):
+    for años in range(partida,año,-20):
+        if año > 384:
+            return "Nunca lo voy a conocer =("
+        elif partida > año :
+            print ("Todavia no llegamos, estamos en el año = ", años)
+    return "Aristételos and I drinking teaaa"
+ 
+
+print(conoci_a_Ari(2024,400))
 
 #EJERCICIO 8
 #Ejercicio 8.1
