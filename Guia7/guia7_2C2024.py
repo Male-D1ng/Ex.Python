@@ -167,11 +167,28 @@ def ceroEnPosPares (s:list[int])->list[int]:
                         lista.append(0)
                 else:
                         lista.append(s[i])
+        return lista
 
 
 def maximo (s:list[int])->int:
+        indice_mayor:int = 0
      for i in range(0,len(s),1):
-          if s[i]>s[i+1]:
-               return s[i]
-          else:
-               return s[i+1]
+             if s[indice_mayor] < s[i]:
+                     indice_mayor = i
+     return s[indice_mayor]   
+
+def maximo2 (s:list[int])->int:
+        maximo = s[0]
+        for elem in s:
+                if maximo < elem:
+                        maximo = elem
+        return maximo
+
+def minimo (s:list[int])->int:
+        el_mas_chico = s[o]
+        for elem in s:
+                if el_mas_chico > elem:
+                        el_mas_chico = elem
+        return el_mas_chico
+
+
