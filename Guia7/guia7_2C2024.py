@@ -149,23 +149,24 @@ for lista in listas:
 """
 
  #2.1 ejercicio inout
-def ceroEnValoresPares (s:list[int]):
-        lista:list[int]=[]
+def ceroEnPosicionesPares (s:list[int]):
         for i in s:
                 if i%2 == 0:
-                        lista.append(0)
+                        s[i] = 0:
                 else:
-                        lista.append(i)
-        return lista
+                       s[i]
+s =[1,2,3,4]
+ceroenPosicionesPares (s)
+print(s)
 
-def ceroEnPosPares (s:list[int]):
+#ej con append, pero no cumple q sea in out
+def ceroEnPosPares (s:list[int])->list[int]:
         lista:list[int]=[]
         for i in range(0,len(s),1):
                 if i%2 == 0:
                         lista.append(0)
                 else:
                         lista.append(s[i])
-        return lista
 
 
 def maximo (s:list[int])->int:
