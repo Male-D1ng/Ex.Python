@@ -147,3 +147,25 @@ print(res)
 for lista in listas:
      len(listas[0])== len (lista)
 """
+
+ #2.1 ejercicio inout
+def ceroEnValoresPares (s:list[int]):
+        lista:list[int]=[]
+        for i in s:
+                if i%2 == 0:
+                        lista.append(0)
+                else:
+                        lista.append(i)
+        return lista
+
+def ceroEnPosPares (s:list[int]):
+        lista:list[int]=[]
+        for i in range(0,len(s),1):
+                if i%2 == 0:
+                        lista.append(0)
+                else:
+                        lista.append(s[i])
+        return lista
+
+
+        
