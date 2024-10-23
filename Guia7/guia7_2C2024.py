@@ -19,7 +19,12 @@ def creo_lista (i:int,f:int)-> list[int]:
           n+=1
      return l
 print(creo_lista(1,5))
-          
+
+def perteneceExtra (s: list[str], e: str) -> bool:
+        for i in range(0,len(s),1):
+                if s[i] == e:
+                        return True
+        return False
 
 s = ["l","e"] 
 def pertenece2 (s: list[str], e: str) -> bool:
@@ -30,12 +35,26 @@ def pertenece2 (s: list[str], e: str) -> bool:
 
 #print (pertenece2 (s,"e"))
 
+#pertenece3
+def pertenece3 (s: list[str], e: str) -> bool:
+        i = 0
+        res = False
+        while i < len(s) and res == False:
+                res = s[i]==e
+                i+=1
+        return res
+        
+#pertenece4 NO ES VALIDA PARA EL PARCIAL
+def pertenece4 (s: list[str], e: str) -> bool:
+        return e in s
+
+
 #ej2, divideATodos (in s:seq<Z>, in e: Z) : Bool, si s[i] mod e = 0)}
 
-def divideATodos (s:list[int],e:int) -> bool:
+def divideATodos (s:list[int],e:int) -> bool: ### for in s lo uso para YA ENTRAR A LA POSICION Y SACAR EL ELEMENTO
      e != 0
      for i in s:
-          if s[i] % e == 0:
+          if i % e == 0:
                return True
      return False
 
