@@ -168,4 +168,9 @@ def ceroEnPosPares (s:list[int]):
         return lista
 
 
-        
+def maximo (s:list[int])->int:
+     for i in range(0,len(s),1):
+          if s[i]>s[i+1]:
+               return s[i]
+          else:
+               return s[i+1]
