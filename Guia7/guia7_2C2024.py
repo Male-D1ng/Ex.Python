@@ -172,6 +172,19 @@ print(palabra_reverso("olo"))
 
 
 #ej 1.11 True si hay 3 nros iguales consecutivos, en cualquier posicion
+#tentativo
+def nros_consecutivos_3 (lista:list[int])->bool:
+    nro_repe:int=lista[0]
+    contador:int = 0
+    for e in range(0,len(lista)-1,1):
+        if nro_repe == lista[e] and contador == 3:
+            nro_repe = lista[e]
+            contador +=1
+        return True
+    return False 
+
+print("hay 3 nros seguidos? = ",nros_consecutivos_3([1,2,3,3,4,5]))
+
 
 
 #ej 1.12 True si una palabra tiene al menos 3 vocales distintas
