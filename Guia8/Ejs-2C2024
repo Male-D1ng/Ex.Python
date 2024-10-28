@@ -8,4 +8,18 @@ import random
 def generar nros_al_azar(cantidad:int,desde:int,hasta:int)-> Pila[int]: 
     pila:Pila[int]= Pila() 
     for i in range(0,cantidad,1): #si lo empezaramos desde el 1 es cantidad +1 
-    elem:int = random.randint(desde,hasta) pila.put(elem return pila 21 #FUNCION PARA IMPRIMIR PILAS Y COLAS 22 def impresoralp:Pila[int])-> None: #tbien podria devolver una lista While not p.empty(): elem:int = p.get() print(elem) cantidad =5 desde = 1 P= generar nros_ al_ azar(cantidad,desde,hasta) hasta 10 impresora(p) 
+       elem:int = random.randint(desde,hasta) 
+       pila.put(elem) 
+    return pila
+
+#FUNCION PARA IMPRIMIR PILAS Y COLAS 
+def impresoralp:Pila[int])-> None: #tbien podria devolver una lista 
+    while not p.empty(): 
+       elem:int = p.get() 
+    print(elem) 
+
+
+cantidad =5 
+desde = 1 
+p = generar nros_ al_ azar(cantidad,desde,hasta) 
+impresora(p) 
