@@ -14,9 +14,16 @@ def generar nros_al_azar(cantidad:int,desde:int,hasta:int)-> Pila[int]:
 
 #FUNCION PARA IMPRIMIR PILAS Y COLAS 
 def impresoralp:Pila[int])-> None: #tbien podria devolver una lista 
+    paux:Pila[int]= Pila()
     while not p.empty(): 
        elem:int = p.get() 
-    print(elem) 
+       print(elem) 
+       paux.put(elem)
+    while not paux.empty():
+       i = paux.get()
+       p.put(i)
+
+
 
 
 cantidad = 5 
