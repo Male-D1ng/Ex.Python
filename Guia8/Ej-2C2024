@@ -1,0 +1,11 @@
+#guia8 ej 8 4 #generar nros_al _azar (in cantidad:int, in desde:int, in hasta:int)->pila[int], se puede usar random. randint[desde, hasta] y la clase LifoQueue()
+from queue import LifoQueue as Pila 7 
+import random 
+=p Pila() 
+#p. put(1) #apilar 
+#lemento = p.get() #desapilar 
+#p.empty #bool, pregunta si es vacia 
+def generar nros_al_azar(cantidad:int,desde:int,hasta:int)-> Pila[int]: 
+    pila:Pila[int]= Pila() 
+    for i in range(0,cantidad,1): #si lo empezaramos desde el 1 es cantidad +1 
+    elem:int = random.randint(desde,hasta) pila.put(elem return pila 21 #FUNCION PARA IMPRIMIR PILAS Y COLAS 22 def impresoralp:Pila[int])-> None: #tbien podria devolver una lista While not p.empty(): elem:int = p.get() print(elem) cantidad =5 desde = 1 P= generar nros_ al_ azar(cantidad,desde,hasta) hasta 10 impresora(p) 
