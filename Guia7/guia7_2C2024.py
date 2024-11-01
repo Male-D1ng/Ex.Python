@@ -2,6 +2,11 @@
 
 #ej1, pertenece, parte de una lista y el entero "e" y devuelve un bool sobre si "e" pertenece o no
 
+from contextlib import ContextDecorator
+
+from numpy import char
+
+
 lista = [1, 2, 3, 4, 5]
 def pertenece (lista:list[int], e:int)-> bool:
         if e in lista:
@@ -38,36 +43,23 @@ def pertenece_if (s:list [int], e: int) -> bool:
     else:
         return False
 
+def pertenece_for (s:list [int], e: int) -> bool:
+    for i in s:
+        if e == i:
+            return True
+    return False
 
-def pertenece_f (s:list [int], e: int) -> bool:
-    for i in range (len(s)):
+def pertenece_bool (s:list[bool], e: bool) -> bool:
+    for i in range (0,len(s),1):
         if s[i] == e:
             return True
     return False
 
+print(pertenece_bool([True,True],False))
 
-def perteneceExtra (s: list[str], e: str) -> bool:
-        for i in range(0,len(s),1):
-                if s[i] == e:
-                        return True
-        return False
+# ej 1.2
 
-
-#pertenece3
-def pertenece3 (s: list[str], e: str) -> bool:
-        i = 0
-        res = False
-        while i < len(s) and res == False:
-                res = s[i]==e
-                i+=1
-        return res
-        
-#pertenece4 NO ES VALIDA PARA EL PARCIAL
-def pertenece4 (s: list[str], e: str) -> bool:
-        return e in s
-
-
-# ej 1.2 divideATodos (in s:seq<Z>, in e: Z) : Bool, si s[i] mod e = 0)}
+#ej2, divideATodos (in s:seq<Z>, in e: Z) : Bool, si s[i] mod e = 0)}
 
 def divideATodos (s:list[int],e:int) -> bool:
      e != 0
@@ -75,23 +67,30 @@ def divideATodos (s:list[int],e:int) -> bool:
           if s[i] % e == 0:
                return True
      return False
-        
+
+def divide_a_todos (s: list [int], e: int) -> bool:
+    for i in s:
+        if i%e != 0:
+            return False
+    return True
+
 def divide_a_todos_v2 (s: list [int], e: int) -> bool:
     for i in s:
         if s[i] %e != 0:
             return False
     return True
-        
 
-#ej 1.3  sumaTotal (in s:seq<Z>) : Z, res es la suma de todos los elementos de s
+
+#ej3,  sumaTotal (in s:seq<Z>) : Z, res es la suma de todos los elementos de s
 def sumaTotal (s:list[int])->int:
      res = 0  
      for i in s: 
         res += i  
      return res
 
+#ej4 maximo
 
-# ej 1.4 maximo
+# ej 1.4
 def maximo (s:list [int]) -> int:
     indice_del_mayor: int = 0
     for i in range (len(s)):
@@ -107,7 +106,9 @@ def maximo2 (s:list[int]) -> int:
     return el_mas_grande
 
 
-#ej 1.5 minimo
+#ej5 minimo
+
+#ej 1.5
 def minimo (s: list [int]) -> int:
     el_mas_chico: int = s[0]
     for elem in s:
@@ -115,7 +116,7 @@ def minimo (s: list [int]) -> int:
             el_mas_chico = elem
     return el_mas_chico
 
-#ej 1.6,  ordenados (in s:seq<Z>) : Bool , si (|s| − 1) → s[i] < s[i + 1]
+#ej6,  ordenados (in s:seq<Z>) : Bool , si (|s| − 1) → s[i] < s[i + 1]
 def ordenados (s:list[int])->bool:
      for i in range (0,len(s)-1,1):
           if s[i]>s[i+1]:
@@ -133,7 +134,7 @@ def estanOrdenados (s: list [int]) -> bool:
     return False
 
 
-#ej 1.7 pos maximo
+#ej7 pos maximo
 
 def pos_maximo (s:list [int]) -> int:
     indice_del_mayor: int = 0
@@ -144,7 +145,7 @@ def pos_maximo (s:list [int]) -> int:
 
 print("la pos es: ",pos_maximo([1,2,3]))
 
-#ej 1.8 pos minimo
+#ej8 pos minimo
 def pos_minimo (s:list [int]) -> int:
     indice_del_menor: int = 0
     for i in range (len(s)):
@@ -155,14 +156,14 @@ def pos_minimo (s:list [int]) -> int:
 print("la pos es: ",pos_minimo([1,2,3]))
 
                
-#ej 1.9, Dada una lista de palabras, devolver verdadero si alguna palabra tiene longitud mayor a 7
+#ej9, Dada una lista de palabras, devolver verdadero si alguna palabra tiene longitud mayor a 7
 def mayor_a_7 (l:list[str])->bool:
     for i in l: 
         if len(i)>=7:
             return True
     return False
 
-#ej 1.10, Dado un texto en formato string, devolver verdadero si se lee igual en ambos sentidos == PALINDROMO
+#ej10, Dado un texto en formato string, devolver verdadero si se lee igual en ambos sentidos == PALINDROMO
 def palabra_reverso (p:list[str])->bool:
      palabra : str = ""
      for i in range(len(p) - 1, -1, -1):
@@ -171,55 +172,94 @@ def palabra_reverso (p:list[str])->bool:
 print(palabra_reverso("olo"))
 
 
-#ej 1.11 True si hay 3 nros iguales consecutivos, en cualquier posicion
-#tentativo
-def nros_consecutivos_3 (lista:list[int])->bool:
-    nro_repe:int=lista[0]
-    contador:int = 0
-    for e in range(0,len(lista)-1,1):
-        if nro_repe == lista[e] and contador == 3:
-            nro_repe = lista[e]
-            contador +=1
-        return True
-    return False 
+#ej11 True si hay 3 nros iguales consecutivos, en cualquier posicion
+def nros_consecutivos_3 (s:list[int])->bool:
+    for i in range(len(s) - 2):
+        if s[i] == s[i + 1] == s[i + 2]:
+            return True
+    return False
+              
+print("hay 3 nros seguidos? = ",nros_consecutivos_3([1,5,4,4,4]))
 
-print("hay 3 nros seguidos? = ",nros_consecutivos_3([1,2,3,3,4,5]))
+#version mas parecida a lo q queria hacer
+def num_iguales(s: list[int]) -> bool:
+    indice: int = 0
+    indice_mayor: int = 1
+    contador_iguales: int = 0
+
+    while indice_mayor < len(s):
+        if s[indice] == s[indice_mayor]:
+            contador_iguales += 1
+            if contador_iguales == 2:
+                return True
+            indice += 1
+            indice_mayor += 1
+        else:
+            contador_iguales = 0
+            indice += 1
+            indice_mayor += 1
+    return False
+    
+print(num_iguales([1,1,1,56,2]))
+print(num_iguales([1,2,4,4,2,56,2]))
+
+#ej12 True si una palabra tiene al menos 3 vocales distintas
+#letras vocales son 'a','e','i','o','u'. qvq halla 3 de ellas
+def vocales_diferentes (palabra :str)->bool:
+    vocales = ['a','e','i','o','u']
+    vocales_en_palabra =[]
+    contador = 0
+    for letras in range (0,len(palabra)-1,1):
+        #quiero q encuentre la primera vocal y dps sigo buscando, pero tengo q guardarla en algun lugar para seguir buscando
+        if pertenece2(vocales,palabra[letras]) and not pertenece2 (vocales_en_palabra,palabra[letras]):
+            vocales_en_palabra.append(palabra[letras])
+            contador += 1
+        elif not pertenece2(vocales,palabra[letras]) and not pertenece2 (vocales_en_palabra,palabra[letras]): #si no cumple no suma nada, no quiero q se reinicie
+            contador += 0
+    if contador == 3:
+            return True
+    else:
+            return False 
+
+print("da false = ",vocales_diferentes("arbol"))
+print("da true = ",vocales_diferentes("arboles"))
+print("da false = ",vocales_diferentes("ardilla"))
 
 
-
-#ej 1.12 True si una palabra tiene al menos 3 vocales distintas
-
-
-#ej 1.13 devolver la posicion dnde inicia la sec de nros ordenada mas larga
+#ej13 devolver la posicion dnde inicia la sec de nros ordenada mas larga
 #si hay dos subsec de igual longitud devolver la pos dnde empieza la primera
+#def sec_nros_ordenados (lista:list[int])->int:
+#print("posicion ",sec_nros_ordenados())
 
 
-#ej 1.14 cantidad de digitos impares
+#ej14 cantidad de digitos impares
+def separador_nros(lista:list[int])->list[int]:
+    lista_aux = [] #lista de todoos los nros en lista
+    for i in range(0,len(lista),1):
+        separador = str(lista[i]) #los int no los puedo separar como los str o list asi q por ahora lo transformo
+        indice = 0
+        while len(separador)>indice:
+            digito = int(separador[indice]) #para esta cuenta me conviene volver al int
+            lista_aux.append(digito)
+            indice+=1
+    return lista_aux
+
+def cantidad_impares(lista:list[int])->int:
+    contador = 0
+    lista_aux = separador_nros(lista)
+    for i in range(0,len(lista_aux),1):
+        if lista_aux[i] %2 != 0 :
+            contador += 1
+        else:
+            contador += 0
+    return contador 
+
+print("cantidad impares = ",cantidad_impares([57, 2383, 812, 246]))
 
 
 #PARTE 2: RECORRER, FILTRAR, MODIFICAR Y PROCESAR SECUENCIAS
 
-# ej 2.1 ejercicio inout
-def ceroEnPosicionesPares (s:list[int]):
-        for i in s:
-                if i%2 == 0:
-                        s[i] = 0:
-                else:
-                       s[i]
-s =[1,2,3,4]
-ceroenPosicionesPares (s)
-print(s)
-
-#ej con append, pero no cumple q sea in out
-def ceroEnPosPares (s:list[int])->list[int]:
-        lista:list[int]=[]
-        for i in range(0,len(s),1):
-                if i%2 == 0:
-                        lista.append(0)
-                else:
-                        lista.append(s[i])
-        return lista
-
+# ej 2.2.1
 
 def CerosEnPosicionesPares_v2 (s: list [int]):
     for i in range(len(s)):
@@ -233,7 +273,8 @@ CerosEnPosicionesPares_v2(s_prueba)
 print(s_prueba)
 
 
-# ej 2.2 CerosEnPosicionesPares2 (s:list [int]) -> list [int]:
+# ej 2.2.2
+#def CerosEnPosicionesPares2 (s:list [int]) -> list [int]:
 def CerosEnValoresPares (s: list [int]):
     lista: list [int] = []
     for i in s:
@@ -254,7 +295,90 @@ def CerosEnPosicionesPares (s: list [int]):
 print(CerosEnPosicionesPares ())
 """
 
-#ej 2.4 cuenta bancaria
+#ej 2.2.3 Dada una cadena de caracteres devuelva una cadena igual a la anterior, pero sin las vocales ni espacios.
+def cadena_sin_vocales (frase:str)-> str:
+    vocal = ['a','e','i','o','u']
+    nueva_cadena: str = ""
+    for letras in range(0,len(frase),1):
+        if not pertenece2(vocal,frase[letras]):
+            nueva_cadena += frase[letras] #agrego a la nueva cadena la letra q va
+        else:
+            frase[letras+1]
+    return nueva_cadena
+
+print("nueva cadena =",cadena_sin_vocales("arbol"))
+
+#ej 2.2.4 problema reemplaza vocalespor '_'
+def reemplazo_vocales (frase: str)-> str:
+    vocal = vocal = ['a','e','i','o','u']
+    nueva_frase:str = ""
+    for l in range(0,len(frase),1):
+        if not pertenece2(vocal,frase[l]):
+            nueva_frase += frase[l] #agrego a la nueva cadena la letra q va
+        else:
+            nueva_frase += '_'
+    return nueva_frase
+
+print("nueva frase =",reemplazo_vocales("arbol"))
+
+# ej 2.2.5 problema da vuelta str
+#res[i] = s[|s| − i − 1]}
+def dar_vuelta_str (frase:str)-> str:
+    nueva_frase:str = ""
+    for l in range(len(frase)-1,-1,-1):
+        nueva_frase += frase[l]
+    return nueva_frase
+
+print("al reves =",dar_vuelta_str("abol"))
+
+#ej 2.2.6 . problema eliminar repetidos
+def sin_repetidos (frase:str)->str:
+    nueva_frase:str = frase[0]
+    for l in range(1,len(frase),1):
+        if not pertenece2(nueva_frase,frase[l]): 
+#como la primera letra de nueva_frase es la de frase, el range comoenza en la posicion 1, pero el fin tiene q ser la longitud de la frase sino 
+#no veo todas las letras
+            nueva_frase += frase[l]
+    return nueva_frase
+print("sin repes =",sin_repetidos("areno"))
+
+# ej 2.3 resultados Materia
+"""
+problema resultadoMateria (in notas: seq⟨Z⟩) : Z {
+requiere: {|notas| > 0}
+requiere: {Para todo i ∈ Z si 0 ≤ i < |notas| → 0 ≤ notas[i] ≤ 10)}
+asegura: {res = 1 ↔ todos los elementos de notas son mayores o iguales a 4 y el promedio es mayor o igual a 7}
+asegura: {res = 2 ↔ todos los elementos de notas son mayores o iguales a 4 y el promedio est´a entre 4 (inclusive) y 7}
+asegura: {res = 3 ↔ alguno de los elementos de notas es menor a 4 o el promedio es menor a 4}
+"""
+def promedio(notas: list[int])->int:
+    suma_notas = 0
+    for n in range(0,len(notas),1):
+        suma_notas += notas[n]
+    return suma_notas/len(notas)
+
+print("resultado materia =",promedio([7,7,7,7]))
+
+def resultadoMateria (notas:list[int])->int:
+    lista: list[bool] = []
+    for n in range(0,len(notas),1):
+        if notas[n] >= 4:
+            lista.append(True)
+        else:
+            lista.append(False)
+    if pertenece_bool(lista,False) or promedio(notas)<4:
+        return 3
+    elif not pertenece_bool(lista,False) and 4<=promedio(notas)<7:
+        return 2
+    else:
+        return 1
+    
+print("resultado materia 1 =",resultadoMateria([7,7,7,7]))
+print("resultado materia 2 =",resultadoMateria([7,4,6,5]))
+print("resultado materia 3 =",resultadoMateria([7,7,7,3]))
+
+
+#ej 2.4 saldo/cuenta bancaria
 
 def cuenta_bancaria(lista_tuplas:list[tuple[str,float]])-> float:
      saldo_actual:float = 0
@@ -267,9 +391,10 @@ def cuenta_bancaria(lista_tuplas:list[tuple[str,float]])-> float:
 
 print(cuenta_bancaria([("I",2000),("R",20),("I",20)]))
 
-#PARTE 3: MATRICES
 
-# ej 3.1
+#PARTE 3 : MATRICES
+
+# ej 3.5.1
 def pertenece_a_cada_uno_version_1 (s: list [list [int]], e: int, res: list[bool]):
     i: int = 0
     res.clear()
@@ -285,7 +410,7 @@ pertenece_a_cada_uno_version_1(s,e,t)
 print (t)
 
 
-# ej 3.2
+# ej 3.5.2 y ej 3.5.2
 def pertenece_a_cada_uno_v2 (s:list[list[int]],e:int, res:list[bool]):
      for i in range(0, len(s), 1):
           if pertenece(s[i],e):
@@ -300,11 +425,15 @@ pertenece_a_cada_uno_v2([[1,2],[2,3],[3]], 3, res)
 
 print(res)
 
-
 """
 for lista in listas:
      len(listas[0])== len (lista)
 """
+
+#ej 3.4 es de pensar teoria y la rta es q lo q cambia es como son parametros de entrada vs los de salida
+
+#ej 3.6.1 problema es_matriz : { res = true ↔ (|s| > 0) ∧ (|s[0]| > 0) ∧ (Para todo i ∈ Z si 0 ≤ i < |s| → |s[i]| = |s[0]|)}
+
 
 #PARTE 4: Programas interactivos usando secuencias
 
@@ -335,3 +464,4 @@ def hayNum (n:int)-> bool:
           if '0' <= num <= '9':
                return True
           return False
+
