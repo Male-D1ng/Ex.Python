@@ -26,6 +26,7 @@ archivo = open("archivos.txt","r",encoding="utf8")
 contenido: str = archivo.read()
 print("la cantidad de lineas es:",contarLineas(contenido))
 
+"""
 def existe_palabra (palabra : str,  nombre_archivo : str) -> bool:
     file = open (nombre_archivo, 'r')
     for lineas in file.readlines():
@@ -46,11 +47,13 @@ def existePalabra(palabra:str, archivo:str) -> bool:
         
     archivo.close()
     return False
+"""
 
 # rECORDAR Q : a la iz del print va la palabra y a la der el nombre del archivo
-palabra: str = "bien"
-print(existePalabra(palabra,"archivos.txt")) 
+#palabra: str = "bien"
+#print(existePalabra(palabra,"archivos.txt")) 
 
+"""
 def cantidad_apariciones (nombre_archivo : str, palabra : str) -> int: 
     contador: int = 0
     archivo= open(nombre_archivo,'r')
@@ -66,7 +69,7 @@ def cantidad_apariciones (nombre_archivo : str, palabra : str) -> int:
 
 palabra: str = "tambien"
 print(cantidad_apariciones('archivos.txt',palabra))
-
+"""
 
 #como usar split y strip
 #entrada = input("Ingresa una cadena: ")
