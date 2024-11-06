@@ -434,6 +434,68 @@ for lista in listas:
 
 #ej 3.6.1 problema es_matriz : { res = true ↔ (|s| > 0) ∧ (|s[0]| > 0) ∧ (Para todo i ∈ Z si 0 ≤ i < |s| → |s[i]| = |s[0]|)}
 
+def es_matriz(s:list[list[int]])->bool:
+    #qvq tiene igual longitud a lo ancho y alto, me conviene q primero vaya el False por que sino no recorre todo la lista
+    for longitud in range(0,len(s),1):
+        if len(s)>0:
+            if len(s[longitud]) != len(s[0]):
+                return False
+    return True
+
+print("es matriz? =",es_matriz([[1,2,3],[4,5,6],[7,8,9],[1,2,3]]))
+
+#ej 3.6.2 problema filas ordenadas :  { Para todo i ∈ Z si 0 ≤ i < |res| → (res[i] = true ↔ ordenados(s[i])) }
+
+def filas_ordenadads(s:list[list[int]])->bool:
+    for longitud in range(0,len(s),1):
+        if es_matriz(s):
+            if not ordenados(s[longitud]): #si no estan ordenados directamente da mal y no tiene q seguir recorriendo
+                return False
+    return True
+
+print("estan ordenadas las filas? =",filas_ordenadads([[1,2,3],[4,5,6],[7,8,9]]))
+
+def f_ordenadas (s:list[list[int]], res:bool):
+    res:bool = True
+    for longitud in range(0,len(s),1):
+        if es_matriz(s):
+            if not ordenados(s[longitud]): #si no estan ordenados directamente da mal y no tiene q seguir recorriendo
+                res = False
+    return res
+
+s = [[1,2,3],[4,5,6],[7,8,1]]
+res = True
+print(f_ordenadas(s,res))
+
+#ej 3.6.3 problema columna : { Devuelve una secuencia con exactamente los mismos elementos de la columna c de la matriz m, en
+#el mismo orden que aparecen}
+#c < |m[0]|, es_matriz(s), c ≥ 0
+def columna (m:list[list[int]], c: int)->list[int]:
+    lista_res:list[int]
+    for n in range(0,len(m),1):
+        if n == c:
+            lista_res = m[n]
+    return lista_res
+
+colum = 2
+print("la columna",colum,"es =",columna([[1,2,3],[4,5,6],[7,8,9]],colum))
+
+#ej 3.6.4 problema columnas ordenadas : → (res[c] = true ↔ ordenados(columna(m, c))) 
+def columnas_ordenadas (s:list[list[int]])->bool:
+    indice:int
+    lista_colum = columna(s,indice)
+    res:int = True
+    for longitud in range(0,len(s),1): #el indice me dice q nro de columna es
+        if es_matriz(s):
+            if longitud == indice:
+            #lista_colum.append(s[longitud][0])
+                if not ordenados(lista_colum): #me fijo si la columna 0 coincide con la siguiente
+                    res = False
+    return res 
+
+print("estan ordenadas las columnas? =",columnas_ordenadas([[1,4,7],[2,5,8],[3,6,9]]))
+
+
 
 #PARTE 4: Programas interactivos usando secuencias
 
