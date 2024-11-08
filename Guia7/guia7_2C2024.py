@@ -470,15 +470,16 @@ print(f_ordenadas(s,res))
 #ej 3.6.3 problema columna : { Devuelve una secuencia con exactamente los mismos elementos de la columna c de la matriz m, en
 #el mismo orden que aparecen}
 #c < |m[0]|, es_matriz(s), c ≥ 0
-def columna (m:list[list[int]], c: int)->list[int]:
-    lista_res:list[int]
-    for n in range(0,len(m),1):
-        if n == c:
-            lista_res = m[n]
+def columna(m:list[list[int]],c:int)->list[int]:
+    lista_res:list[int]=[]
+    for n in m:
+        for l in range(0,len(n),1): #si el indice n es el nro de columna quiero q me de el nro en esa posicion
+            if l == c:
+                lista_res.append(n[l]) #nro en la posicion de la columna pedida
     return lista_res
-
 colum = 2
 print("la columna",colum,"es =",columna([[1,2,3],[4,5,6],[7,8,9]],colum))
+
 
 #ej 3.6.4 problema columnas ordenadas : → (res[c] = true ↔ ordenados(columna(m, c))) 
 def columnas_ordenadas (s:list[list[int]])->bool:
