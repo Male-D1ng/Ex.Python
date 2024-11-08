@@ -595,7 +595,41 @@ print (caso_diagonal([['X','X','X'],['X','X','X'],['X','X','O']]))
 
 #PARTE 4: Programas interactivos usando secuencias
 
-#ej 4.4 contraseña : entra un string,  sale otro string con tres posibles valores: VERDE, AMARILLA y ROJA
+#ej 4.7.1 lista_estudiantes con input
+def lista_estudiantes()->list[str]:
+    lista = []
+    entrada = input("Nombre del alumno: ")
+    while entrada != "terminar" and entrada!= "":
+        lista.append(entrada)
+        entrada = input("Nombre del alumno: ")
+    return lista
+print(lista_estudiantes())
+
+
+#ej 4.7.2 monedero_electrónico, C = cargar,D = descontar, X = finalizar
+def monedero_electronico ()-> list[(str,int)]:
+    lista:list[tuple[str,int]] = []
+    accion = input("Acción realizada = ")
+    monto = input ("Ingrese el monto = ")
+    nro:int = 0
+    while accion != "X":
+        if accion == "C":
+            nro = monto
+            lista.append((accion,nro))
+        elif accion == "D":
+            nro = monto
+            lista.append((accion,nro))
+        
+        accion = input("Acción realizada = ")
+        monto = input("Ingrese el monto = ")
+
+    return lista
+
+print(monedero_electronico())
+
+#EJ 4.7.3 NO TENGO GANAS DE HACERLO PERO ES MEDIO LO MISMO
+
+#ej 4.7.4 contraseña : entra un string,  sale otro string con tres posibles valores: VERDE, AMARILLA y ROJA
 def contrasena (c:str)->str:
      if len (c) < 5:
           return 'Roja'
