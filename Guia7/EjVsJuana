@@ -1,0 +1,41 @@
+"""horizontal
+todos los de lista iguales
+vertical
+los elementos de la misma posición en las listas son iguales
+diagonal
+primer elemento de primera lista = segundo elemento segunda lista"""
+
+# def tateti ACÁ JUNTÁS LAS 3 AUXILIARES.
+
+def todos_iguales(l:list[chr])->bool: # Función para ver si los elementos de UNA ÚNICA LISTA son todos iguales.
+    n:int=0
+    res:bool=True
+    while (n!=(len(l)-1)):
+        if l[n]!=l[n+1]:
+            res=False
+            return res
+        else:
+            n+1
+    return res
+
+def casos_horizontales(lista:list[list[chr]])->int: # Función para ver si los elementos de UNA DE LAS LISTAS
+    n:int=0                                         # son todos iguales (acá tenés que determinar si son X u O).
+    res:int=2
+    return res
+
+def casos_verticales(lista:list[list[chr]])->int:
+    return 0
+
+def caso_diagonal(lista:list[list[chr]])->int: #FUNCIONA SIN RECURSIÓN.
+    if (lista[0][0] == lista[1][1] == lista[2][2]) and (lista[0][0] == 'O'):
+        res=0
+    elif (lista[0][2] == lista[1][1] == lista[2][0]) and (lista[0][0] == 'O'):
+        res=0
+    if (lista[0][0] == lista[1][1] == lista[2][2]) and (lista[0][0] == 'X'):
+        res=1
+    elif (lista[0][2] == lista[1][1] == lista[2][0]) and (lista[0][0] == 'X'):
+        res=1
+    else:
+        res=2
+    return res
+print (caso_diagonal([['X','X','X'],['X','X','X'],['X','X','O']]))
