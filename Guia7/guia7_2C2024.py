@@ -430,7 +430,7 @@ for lista in listas:
      len(listas[0])== len (lista)
 """
 
-#ej 3.4 es de pensar teoria y la rta es q lo q cambia es como son parametros de entrada vs los de salida
+#ej 3.5.4 es de pensar teoria y la rta es q lo q cambia es como son parametros de entrada vs los de salida
 
 #ej 3.6.1 problema es_matriz : { res = true ↔ (|s| > 0) ∧ (|s[0]| > 0) ∧ (Para todo i ∈ Z si 0 ≤ i < |s| → |s[i]| = |s[0]|)}
 
