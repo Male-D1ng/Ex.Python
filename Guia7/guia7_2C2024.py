@@ -656,4 +656,63 @@ def hayNum (n:int)-> bool:
           if '0' <= num <= '9':
                return True
           return False
+def fibo (n: int) -> int:
+    if n<= 1:
+        return n
+    un_fibo: int = 0
+    un_fibo_sig: int = 1
+    i: int = 2
+    while i<= n:
+        aux: int = un_fibo + un_fibo_sig
+        un_fibo = un_fibo_sig
+        un_fibo_sig = aux
+        i += 1
+    return un_fibo_sig
 
+print (fibo(1))
+print (fibo(2))
+print (fibo(3))
+print (fibo(4))
+print (fibo(5))
+
+def es_primo (n: int) -> bool:
+    cant_divisores: int = 0
+    i: int = 1
+    while i < n and cant_divisores < 2:
+        if n % i == 0:
+            cant_divisores += 1
+        i += 1
+    return cant_divisores < 2 and n != 1
+
+print (es_primo(1))
+print (es_primo(2))
+print (es_primo(3))
+print (es_primo(4))
+print (es_primo(5))
+
+def buscar_nesimo_primo (n: int) -> int:
+    cant_primos: int = 0
+    i: int = 2
+    while cant_primos < n:
+        if es_primo (i):
+            cant_primos += 1
+        i +=1
+    return i-1
+
+print (buscar_nesimo_primo (1))
+print (buscar_nesimo_primo (2))
+print (buscar_nesimo_primo (3))
+print (buscar_nesimo_primo (4))
+
+def suma_matriz_fila_cola (fila: int, columna: int) -> int:
+    i : int = 1
+    k: int = 0
+    while i <= fila:
+        j: int = 1
+        while j <= columna:
+            k += j+i
+            j +=1
+        i += 1
+    return k
+
+print (suma_matriz_fila_cola (2,2))
