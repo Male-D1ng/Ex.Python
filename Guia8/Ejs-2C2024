@@ -31,3 +31,312 @@ desde = 1
 hasta = 10
 p = generar nros_ al_ azar(cantidad,desde,hasta) 
 impresora(p) 
+
+
+
+
+
+#p.empty()
+#ej 1.1
+import random
+from queue import LifoQueue as Pila
+from queue import Queue as Cola
+def generar_nros_al_azar(cantidad : int, desde : int, hasta : int) -> Pila
+[int]:
+    pila: Pila [int] = Pila()
+    for _ in range(cantidad):
+        elem: int = random.randint(desde, hasta)
+        pila.put(elem)
+    return pila
+
+def mostrar_eltos_pila(p:Pila[int]): #in
+    paux:Pila[int] = Pila()
+    while not p.empty():
+        elem: int = p.get()
+        print(elem)
+        paux.put(elem)
+    while not paux.empty():
+        e:int = paux.get()
+        p.put(e)
+
+def mostrar_elems_pila(p:Pila[int]): #inout
+    while not p.empty():
+        elem: int = p.get()
+        print(elem)
+
+cantidad = 5
+desde = 1
+hasta = 10
+p:Pila[int] = Pila()
+p = generar_nros_al_azar (cantidad, desde, hasta)
+mostrar_eltos_pila(p)
+print ("Mostrar de nuevos eltos pila")
+mostrar_eltos_pila(p) #no muestra nada porque ahora esta vacia
+#ej 1.2
+#def cantidad_elementos(p : Pila) -> int:
+
+# ej 2.10
+def buscar_el_maximo(c : Pila [int]) -> int:
+    maximo: int = 0
+    paux:Pila[int] = Pila()
+    while not c.empty():
+        elem: int = c.get()
+        paux.put(elem)
+        if elem > maximo:
+            maximo = elem
+    while not paux.empty():
+        e:int = paux.get()
+        c.put(e)
+        #c.put(paux.get())
+    return maximo
+
+def buscar_el_maximo_v2(c : Pila [int]) -> int:
+    paux:Pila[int] = Pila()
+    if not p.empty():
+        maximo: int = c.get()
+        paux.put(maximo)
+    else:
+        maximo = None
+    while not c.empty():
+        elem: int = c.get()
+        paux.put(elem)
+        if elem > maximo:
+            maximo = elem
+    while not paux.empty():
+        e:int = paux.get()
+        c.put(e)
+    return maximo
+
+c = Pila()
+c.put(-1)
+c.put(-2)
+c.put(-3)
+c.put(-7)
+c.put(-3)
+c.put(-4)
+print("el maximo es ",buscar_el_maximo(c))
+print("el maximo_v2 es ",buscar_el_maximo_v2(c))
+
+
+def armar_secuencia_bingo() -> Cola[int]:
+    cola: Cola[int] = Cola()
+    lista: list[int] = list(range(0,10))
+    random.shuffle(lista)
+    #print("el largo de la lista es: ", len(lista))
+    #print(lista)
+    for i in range(len(lista)):
+        cola.put(lista[i])
+    return cola
+
+def mostrar_eltos_cola(p:Pila[int]): #in
+    paux:Pila[int] = Cola()
+    while not p.empty():
+        elem: int = p.get()
+        print(elem)
+        paux.put(elem)
+    while not paux.empty():
+        e:int = paux.get()
+        p.put(e)
+
+bolillero: Cola[int] = armar_secuencia_bingo()
+mostrar_eltos_cola(bolillero)
+
+def jugar_carton_de_bingo(carton: list[int], bolillero: 
+
+#p.empty()
+#ej 1.1
+import random
+from queue import LifoQueue as Pila
+from queue import Queue as Cola
+def generar_nros_al_azar(cantidad : int, desde : int, hasta : int) -> Pila
+[int]:
+    pila: Pila [int] = Pila()
+    for _ in range(cantidad):
+        elem: int = random.randint(desde, hasta)
+        pila.put(elem)
+    return pila
+
+def mostrar_eltos_pila(p:Pila[int]): #in
+    paux:Pila[int] = Pila()
+    while not p.empty():
+        elem: int = p.get()
+        print(elem)
+        paux.put(elem)
+    while not paux.empty():
+        e:int = paux.get()
+        p.put(e)
+
+def mostrar_elems_pila(p:Pila[int]): #inout
+    while not p.empty():
+        elem: int = p.get()
+        print(elem)
+
+cantidad = 5
+desde = 1
+hasta = 10
+p:Pila[int] = Pila()
+p = generar_nros_al_azar (cantidad, desde, hasta)
+mostrar_eltos_pila(p)
+print ("Mostrar de nuevos eltos pila")
+mostrar_eltos_pila(p) #no muestra nada porque ahora esta vacia
+#ej 1.2
+#def cantidad_elementos(p : Pila) -> int:
+
+# ej 2.10
+def buscar_el_maximo(c : Pila [int]) -> int:
+    maximo: int = 0
+    paux:Pila[int] = Pila()
+    while not c.empty():
+        elem: int = c.get()
+        paux.put(elem)
+        if elem > maximo:
+            maximo = elem
+    while not paux.empty():
+        e:int = paux.get()
+        c.put(e)
+        #c.put(paux.get())
+    return maximo
+
+def buscar_el_maximo_v2(c : Pila [int]) -> int:
+    paux:Pila[int] = Pila()
+    if not p.empty():
+        maximo: int = c.get()
+        paux.put(maximo)
+    else:
+        maximo = None
+    while not c.empty():
+        elem: int = c.get()
+        paux.put(elem)
+        if elem > maximo:
+            maximo = elem
+    while not paux.empty():
+        e:int = paux.get()
+        c.put(e)
+    return maximo
+
+c = Pila()
+c.put(-1)
+c.put(-2)
+c.put(-3)
+c.put(-7)
+c.put(-3)
+c.put(-4)
+print("el maximo es ",buscar_el_maximo(c))
+print("el maximo_v2 es ",buscar_el_maximo_v2(c))
+
+
+def armar_secuencia_bingo() -> Cola[int]:
+    cola: Cola[int] = Cola()
+    lista: list[int] = list(range(0,10))
+    random.shuffle(lista)
+    #print("el largo de la lista es: ", len(lista))
+    #print(lista)
+    for i in range(len(lista)):
+        cola.put(lista[i])
+    return cola
+
+def mostrar_eltos_cola(p:Pila[int]): #in
+    paux:Pila[int] = Cola()
+    while not p.empty():
+        elem: int = p.get()
+        print(elem)
+        paux.put(elem)
+    while not paux.empty():
+        e:int = paux.get()
+        p.put(e)
+
+bolillero: Cola[int] = armar_secuencia_bingo()
+mostrar_eltos_cola(bolillero)
+
+def jugar_carton_de_bingo(carton: list[int], bolillero: Cola[int]) -> int:
+
+
+---------------------------------------------------------------------
+Ésta es una copia del mensaje que se le ha enviado en "exactas". Vaya a
+https://campus.exactas.uba.ar/message/index.php?user=52580&id=55972 para
+contestar.
+
+from typing import List, TextIO
+
+def contar_lineas(nombre_archivo: str) -> int:
+    archivo: TextIO = open(nombre_archivo, "r")
+    longitud = archivo.readlines()
+    archivo.close()
+    return len(longitud)
+
+cant_lineas = contar_lineas("/home/Estudiante/Descargas/hola.txt")
+print(cant_lineas)
+
+def lista_palabras (linea: str) -> list[str]:
+    res: list[str] = []
+    palabra_en_construccion = ""
+    for letra in linea:
+        if letra != " " or "\n":
+            palabra_en_construccion = palabra_en_construccion + letra
+        else:
+            if len(palabra_en_construccion) > 0:
+                res.append(palabra_en_construccion)
+                palabra_en_construccion = ""
+    res.append(palabra_en_construccion)
+    return res
+
+def agrupar_por_longitud(nombre_archivo : str) -> dict:
+    res: dict[int, int] = dict()
+    palabras: list [str] = lista_palabras(nombre_archivo)
+    for palabra in palabras:
+        long: int = len(palabra)
+        if long in res.keys():
+            res[long] += 1
+        else:
+            res[long] = 1
+    return res
+
+palabras = agrupar_por_longitud("/home/Estudiante/Descargas/hola.txt")
+print(palabras)
+
+"""
+    archivo: TextIO = open(nombre_archivo, "r")
+    lineas = archivo.readlines()
+    for linea in lineas:
+        for palabra in linea:
+            if not len(palabra) in res:
+                res [len(palabra)] = 1
+            else:
+                res [len(palabra)] += 1
+    return res
+palabras = agrupar_por_longitud("/home/Estudiante/Descargas/hola.txt")
+print(palabras)
+"""
+def obtener_palabras(texto: str) -> list[str]:
+    res: list[str] = []
+    palabra: str = ""
+    for char in texto:
+        if char != " " and char != "\n":
+            palabra += char
+        else:
+            if palabra != "":
+                res.append(palabra)
+            palabra = ""
+    if palabra != "":
+        res.append(palabra)
+    return res
+print(agrupar_por_longitud("/home/Estudiante/Descargas/hola.txt"))
+
+
+
+def agrupar_por_long (nombre_archivo: str):
+    res: dict [int, int] = {}
+    archivo = open(nombre_archivo, "r")
+    texto: str = archivo.read()
+    archivo.close()
+    palabras: list [str] = obtener_palabras(texto)
+    for palabra in palabras:
+        long = len(palabra)
+        if long in res.keys():
+            res[long] += 1
+        else:
+            res[long] = 1
+    return res
+
+
+
