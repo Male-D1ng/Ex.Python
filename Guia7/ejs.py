@@ -33,19 +33,6 @@ def transponer (m:list[list[int]])->list[list[int]]:
 
 print(transponer([[1,4,7],[2,5,8],[3,6,9]]))
 
-#ej 3.6.6 Ta-Te-Ti tradicional 
-
-"""
-def quien_gana_tateti(m:list[list[chr]])->int:
-    res:int=0
-    #la matriz es de 3x3
-    #tengo q ver si coinciden horizontal, vertical o diagonalmente
-    for n in m:
-        for l in range(0,len(n),1):
-            if  
-
-            
-
 
 
 
