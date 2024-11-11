@@ -1,5 +1,3 @@
-def funcion(a: int) -> int:
-    return a+1
 
 # EJERCICIO 11
 def triangle ( a : int , b : int , c : int ) -> int :
