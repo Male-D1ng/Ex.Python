@@ -38,4 +38,36 @@ def agrupar_por_longitud (nombre:str)->dict:
 
 print(agrupar_por_longitud("archivo.txt"))
 
+inventario1:dict[str,dict[str,int]]= {"camisa roja" : {"Precio" : 5000, "Cantidad" : 10}, "jean oscuro": {"Precio" : 7000,"Cantidad" : 10}}
 
+
+def agregarProducto(inventario:dict[str,dict[str,int]],nombre:str,precio:int,cantidad:int) -> dict[str,dict[str,int]]:        
+    d:dict[str,int] = {"Precio" : 0,"Cantidad" : 0}
+    d["Precio"] += precio
+    d["Cantidad"] += cantidad
+    inventario[nombre] = d
+    return inventario
+
+#print(agregarProducto(inventario1,"jean",5000,5))
+
+def actualizarStockYPrecio(nombre:str,precio:int,cantidad:int) -> dict[str,dict[str,int]]:
+    if nombre in inventario1:
+        inventario1[nombre]["Precio"] = precio
+        inventario1[nombre]["Cantidad"] = cantidad
+        return inventario1
+    else:
+        return "El producto no esta en el inventario"
+    
+#print(actualizarStockYPrecio("camisa roja",7000,5))
+
+def calcularValorInventario(inventario:dict[str,dict[str,int]]) -> float:
+    valorInventario:int=0
+    for nombre, cantidadPrecio in inventario.items():
+        precio= inventario[nombre]["Precio"]
+        cantidad= inventario[nombre]["Cantidad"]
+        producto= precio * cantidad
+        valorInventario += producto
+    return valorInventario
+
+
+#print(calcularValorInventario(inventario1))
