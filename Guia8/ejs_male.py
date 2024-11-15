@@ -135,6 +135,49 @@ mostrar_elems_pila(h)
 print("la cantidad de elementos es ",cantidad_elementos(h)) 
 print("el maximo es ",buscar_el_maximo_v2(h))
 
+from queue import LifoQueue as Pila 
+from typing import TextIO
+import random 
+
+#ej 1.3 buscar_maximo
+#razonamiento
+def buscar_maximo (p:Pila[int])-> int: 
+    paux:Pila[int]=Pila() #saco los elems de la original y los modifico, dps se usa para restaurar la original
+    maximo = p.get() #asumo q el maximo es el primer elemento
+    paux.put(maximo) #lo guardo
+    while not p.empty():
+        elem = p.get() #saco el segundo elem y lo guardo
+        paux.put(elem)
+        if elem>maximo: #comienzo la comparacion entre el max y el resto de los elementos de la pila
+            maximo = elem
+        else:
+            p.get() 
+            paux.put(p.get()) #siempre q saco un nuevo elemento primero lo guardo en la auxiliar
+
+    while not paux.empty():
+        p.put(paux.get()) 
+
+    return maximo 
+
+def buscar_el_maximo_v2(c : Pila [int]) -> int:
+    paux:Pila[int] = Pila()
+    if not c.empty():
+        maximo: int = c.get()
+        paux.put(maximo)
+    else:
+        maximo = None
+    while not c.empty():
+        elem: int = c.get()
+        paux.put(elem)
+        if elem > maximo:
+            maximo = elem
+    while not paux.empty():
+        e:int = paux.get()
+        c.put(e)
+    return maximo
+
+
+#ej 1.4 buscar_nota_maxima, devuelve una tupla dnde aparece la maxima nota en la segunda componente de la tupla 
 
 
 
