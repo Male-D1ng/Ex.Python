@@ -140,6 +140,59 @@ print("el maximo es ",buscar_el_maximo_v2(h))
 
 
 #ej 1.4 buscar_nota_maxima, devuelve una tupla dnde aparece la maxima nota en la segunda componente de la tupla 
+def buscar_nota_maxima (p : Pila[tuple[str,int]]) -> tuple[str,int]:
+    paux: Pila[tuple [str,int]] = Pila()
+    if not p.empty():
+        maximo: tuple[str,int] = p.get()
+        paux.put(maximo)
+    while not p.empty():
+        elem: tuple[str,int] = p.get()
+        paux.put(elem)
+        if elem[1] > maximo[1]:
+            maximo = elem
+    while not paux.empty():
+        f = paux.get()
+        p.put(f)
+    return maximo
+
+
+def buscar_nota_minima(c : Cola[str,int]) -> int:
+    paux: Cola[str,int] = Cola()
+    if not c.empty():
+        maximo: tuple [str,int] = c.get()
+        paux.put(maximo)
+    while not c.empty():
+        elem: tuple[str, int] = c.get()
+        paux.put(elem)
+        if elem < maximo:
+            maximo = elem
+    while not paux.empty():
+        aux = paux.get()
+        c.put(aux)
+    return maximo[1]
+
+
+
+def esta_bien_balanceada(s: str) -> bool:
+    res:bool= True
+    p:Pila =Pila()
+    parentesis_abiertos: int = 0
+    for letra in s[::-1]:
+        p.put(letra)
+    while not p.empty():
+        letra_sacada = p.get()
+        if letra_sacada== "(":
+            parentesis_abiertos +=1
+        if letra_sacada== ")":
+            parentesis_abiertos -=1
+        if parentesis_abiertos < 0:
+            res= False
+    if parentesis_abiertos > 0:
+        res= False
+    return res
+
+
+
 
 
 
