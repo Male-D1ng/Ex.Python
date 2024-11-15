@@ -87,57 +87,7 @@ def generar_nros(cantidad:int,desde:int,hasta:int)-> Pila[int]:
         nro +=1
         n -= 1
     return p
-
-
-def buscar_maximo (p:Pila[int])-> int:
-    paux:Pila[int]=Pila() #asi puedo sacar loe elems de la original y poder usarlos como quiera
-    maximo = p.get()
-    paux.put(maximo)
-    while not p.empty():
-        elem = p.get()
-        paux.put(elem)
-        if elem>maximo:
-            maximo = elem
-        else:
-            p.get()
-            paux.put(p.get())
-
-    while not paux.empty():
-        p.put(paux.get())
-
-    return maximo 
-
-def buscar_el_maximo_v2(c : Pila [int]) -> int:
-    paux:Pila[int] = Pila()
-    if not c.empty():
-        maximo: int = c.get()
-        paux.put(maximo)
-    else:
-        maximo = None
-    while not c.empty():
-        elem: int = c.get()
-        paux.put(elem)
-        if elem > maximo:
-            maximo = elem
-    while not paux.empty():
-        e:int = paux.get()
-        c.put(e)
-    return maximo
-
-p:Pila[int] = Pila()
-cantidad = 6
-desde = 1
-hasta = 10
-#p = generar_nros (cantidad, desde, hasta)
-#mostrar_elems_pila(p)
-h = generar_nros_al_azar(cantidad,desde,hasta)
-mostrar_elems_pila(h)
-print("la cantidad de elementos es ",cantidad_elementos(h)) 
-print("el maximo es ",buscar_el_maximo_v2(h))
-
-from queue import LifoQueue as Pila 
-from typing import TextIO
-import random 
+    
 
 #ej 1.3 buscar_maximo
 #razonamiento
@@ -175,6 +125,18 @@ def buscar_el_maximo_v2(c : Pila [int]) -> int:
         e:int = paux.get()
         c.put(e)
     return maximo
+
+p:Pila[int] = Pila()
+cantidad = 6
+desde = 1
+hasta = 10
+#p = generar_nros (cantidad, desde, hasta)
+#mostrar_elems_pila(p)
+h = generar_nros_al_azar(cantidad,desde,hasta)
+mostrar_elems_pila(h)
+print("la cantidad de elementos es ",cantidad_elementos(h)) 
+print("el maximo es ",buscar_el_maximo_v2(h))
+
 
 
 #ej 1.4 buscar_nota_maxima, devuelve una tupla dnde aparece la maxima nota en la segunda componente de la tupla 
