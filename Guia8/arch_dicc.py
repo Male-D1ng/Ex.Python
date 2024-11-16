@@ -49,13 +49,17 @@ def pertenece(elem:str,lista:list[str])->bool:
             res = True
     return res
 
-def calcular_promedio_por_estudiante (boletin:list[tuple[str,float]])->dict[str,float]:
+ddef calcular_promedio_por_estudiante (boletin:list[tuple[str,float]])->dict[str,float]:
     promedios_estudiante:dict[str,float] = {}
+    promedios_estudiante = {"p1":5}
+    print(promedios_estudiante)
     
     for estudiante in boletin:
         if not pertenece(estudiante[0],promedios_estudiante.keys()):
             calcular_promedio: float = promedio(estudiante[0],boletin)
             promedios_estudiante [estudiante[0]] = calcular_promedio #le asigno a ese estudiante el promedio
+        else:
+            promedios_estudiante[estudiante[0]] = promedio(estudiante[0],boletin)
         
     return promedios_estudiante
 
