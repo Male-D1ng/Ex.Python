@@ -161,7 +161,7 @@ print(navegar_atras(historiales, "marcos"))
 inventario1 = {}
 
 def agregarProducto(inventario:dict[str,dict[str,float | int]],nombre:str,precio:float,cantidad:int) :#-> dict[str,dict[str,float | int]]:        
-    d:dict[str,int] = {"Precio" : 0,"Cantidad" : 0}
+    d:dict[str,float | int] = {"Precio" : 0,"Cantidad" : 0}
     d["Precio"] += precio
     d["Cantidad"] += cantidad
     inventario[nombre] = d
@@ -183,7 +183,7 @@ def actualizarStockYPrecio(diccionario:dict[str,dict[str,float | int]],nombre:st
 actualizarStockYPrecio(inventario1,"camisa",0.0,10)
 
 def calcularValorInventario(inventario:dict[str,dict[str,float | int]]) -> float:
-    valorInventario:int=0
+    valorInventario:float=0
     for nombre, cantidadPrecio in inventario.items():
         precio= inventario[nombre]["Precio"]
         cantidad= inventario[nombre]["Cantidad"]
