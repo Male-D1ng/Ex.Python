@@ -75,35 +75,42 @@ print(calcular_promedio_por_estudiante(notas))
 
 #ej 18 diccionarios : la palabra mas frecuente
 
-def laPalabraMasFrecuente(nombre_archivo : str) -> str:
-    archivo = open(nombre_archivo,"r",encoding="utf-8")
-    contenido = archivo.readlines()
-    palabras = dict[str,int] = {}
-    nueva_palabra: str = ""
-    palabraMasFrecuente: str
-    frecuenciaMax: int = 0
-    
-    for linea in contenido:
-        for letra in linea:
-            if letra != " " and letra!= "\n":
-                nueva_palabra+=letra
-            elif letra !="\n":
-                if nueva_palabra not in palabras:
-                    palabras[nueva_palabra] = 1
-                else:
-                    palabras[nueva_palabra] += 1
-                nueva_palabra = ""
-                
-    archivo.close()
+#FUNCION MUY IMPORTANTE PARA ARCHIVOS Y DICCIONARIOS
+def obtener_palabras(texto: str) -> list[str]: # supongamos que las palabras están sólo separadas por espacios (o saltos de línea)
+    palabras: list[str] = []
+    palabra_actual: str = ''
+    for c in texto:
+        if c == ' ' or c == '\n':
+            if palabra_actual != '':
+                palabras.append(palabra_actual)
+                palabra_actual = ''
+        else:
+            palabra_actual += c
+    if palabra_actual != '':
+        palabras.append(palabra_actual)
+    return palabras
 
-    if nueva_palabra and nueva_palabra not in palabras:
-        palabras[palabras] = 1
-    elif nueva_palabra:
-        palabras[palabras] += 1
+
+def laPalabraMasFrecuente(nombre_archivo : str) -> str:
+    archivo = open(nombre_archivo,"r")
+    contenido = archivo.read()
+    archivo.close()
+    listaPalabras :list[str] = obtener_palabras(contenido)
+    diccionario :dict[str,int] = {}
     
-    for palabra in palabras:
-        if palabras[palabra] > frecuenciaMax:
-            frecuenciaMax = palabras[palabra]
+    for palabra in listaPalabras:
+        clave: int = palabra
+        if clave in diccionario:
+            diccionario[clave] +=1
+        else:
+            diccionario[clave] = 1
+    
+    palabraMasFrecuente :str = ""
+    maximaFrecuencia:int = 0
+
+    for palabra,frecuencia in diccionario.items():
+        if frecuencia > maximaFrecuencia :
+            maximaFrecuencia = frecuencia
             palabraMasFrecuente = palabra
             
     return palabraMasFrecuente
