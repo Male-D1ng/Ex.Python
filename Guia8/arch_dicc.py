@@ -39,6 +39,32 @@ def agrupar_por_longitud (nombre:str)->dict:
 
 print(agrupar_por_longitud("archivo.txt"))
 
+#ej 17 calcular promedio por estudiante
+
+def calcular_promedio_por_estudiante (boletin:list[tuple[str,float]])->dict[str,float]:
+    notas_estudiantes:dict[str,list[int]] = {}
+    promedios_estudiante:dict[str,float] = {}
+
+    for estudiante in boletin:
+        if estudiante[0] in notas_estudiantes:
+            notas_estudiantes[estudiante[0]].append(estudiante[1])
+        else:
+            notas_estudiantes[estudiante[0]] = [estudiante[0]]
+        
+    for estudiante,notas in notas_estudiantes.items():
+        promedios_estudiante[estudiante] = promedio(notas)
+
+    return promedios_estudiante
+
+def promedio(numeros:list[int])-> int:
+    longitud = len(numeros)
+    suma = 0
+
+    for numero in numeros:
+        suma += numero
+
+    return suma/longitud
+
 
 #ej 20 diccionarios : actualizar stock
 
