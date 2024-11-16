@@ -171,6 +171,7 @@ def agregarProducto(inventario:dict[str,dict[str,float | int]],nombre:str,precio
 agregarProducto(inventario1,"camisa",20.0,50)
 agregarProducto(inventario1,"pantalon",30.0,30)
 
+"""
 def actualizarStockYPrecio(diccionario:dict[str,dict[str,float | int]],nombre:str,precio:float,cantidad:int): #-> dict[str,dict[str,float | int]]:
     if nombre in inventario1:
         inventario1[nombre]["Precio"] += precio
@@ -178,7 +179,16 @@ def actualizarStockYPrecio(diccionario:dict[str,dict[str,float | int]],nombre:st
         return inventario1
     else:
         return "El producto no esta en el inventario"
-    
+"""
+def actualizarStockYPrecio(diccionario:dict[str,dict[str,float | int]],nombre:str,precio:float,cantidad:int): #-> dict[str,dict[str,float | int]]:
+    for stuff in diccionario:
+        if stuff == nombre:
+            inventario1[nombre]["Precio"] += precio
+            inventario1[nombre]["Cantidad"] += cantidad
+            return inventario1
+        else:
+            return "El producto no esta en el inventario"
+            
 #print(actualizarStockYPrecio("camisa roja",7000,5))
 actualizarStockYPrecio(inventario1,"camisa",0.0,10)
 
