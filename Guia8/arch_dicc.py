@@ -67,6 +67,41 @@ def promedio(numeros:list[int])-> int:
 
 #ej 18 diccionarios : la palabra mas frecuente
 
+def laPalabraMasFrecuente(nombre_archivo : str) -> str:
+    archivo = open(nombre_archivo,"r",encoding="utf-8")
+    contenido = archivo.readlines()
+    palabras = dict[str,int] = {}
+    nueva_palabra: str = ""
+    palabraMasFrecuente: str
+    frecuenciaMax: int = 0
+    
+    for linea in contenido:
+        for letra in linea:
+            if letra != " " and letra!= "\n":
+                nueva_palabra+=letra
+            elif letra !="\n":
+                if nueva_palabra not in palabras:
+                    palabras[nueva_palabra] = 1
+                else:
+                    palabras[nueva_palabra] += 1
+                nueva_palabra = ""
+                
+    archivo.close()
+
+    if nueva_palabra and nueva_palabra not in palabras:
+        palabras[palabras] = 1
+    elif nueva_palabra:
+        palabras[palabras] += 1
+    
+    for palabra in palabras:
+        if palabras[palabra] > frecuenciaMax:
+            frecuenciaMax = palabras[palabra]
+            palabraMasFrecuente = palabra
+            
+    return palabraMasFrecuente
+
+print("la palabra mas frecuente es: ", laPalabraMasFrecuente("archivos_palabras.txt"))
+
 #ej 19 diccionarios : historial de navegacion
 
 from queue import LifoQueue as Pila
