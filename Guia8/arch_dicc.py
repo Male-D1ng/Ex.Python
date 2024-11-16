@@ -42,9 +42,10 @@ print(agrupar_por_longitud("archivo.txt"))
 
 #ej 20 diccionarios : actualizar stock
 
-inventario1:dict[str,dict[str,int]]= {"camisa roja" : {"Precio" : 5000, "Cantidad" : 10}, "jean oscuro": {"Precio" : 7000,"Cantidad" : 10}}
+#inventario1:dict[str,dict[str,int]]= {"camisa roja" : {"Precio" : 5000, "Cantidad" : 10}, "jean oscuro": {"Precio" : 7000,"Cantidad" : 10}}
+inventario1 = {}
 
-def agregarProducto(inventario:dict[str,dict[str,float | int]],nombre:str,precio:float,cantidad:int): # -> dict[str,dict[str,float | int]]:        
+def agregarProducto(inventario:dict[str,dict[str,float | int]],nombre:str,precio:float,cantidad:int) :#-> dict[str,dict[str,float | int]]:        
     d:dict[str,int] = {"Precio" : 0,"Cantidad" : 0}
     d["Precio"] += precio
     d["Cantidad"] += cantidad
@@ -52,16 +53,19 @@ def agregarProducto(inventario:dict[str,dict[str,float | int]],nombre:str,precio
     return inventario
 
 #print(agregarProducto(inventario1,"jean",5000,5))
+agregarProducto(inventario1,"camisa",20.0,50)
+agregarProducto(inventario1,"pantalon",30.0,30)
 
-def actualizarStockYPrecio(nombre:str,precio:int,cantidad:int): # -> dict[str,dict[str,float | int]]:
+def actualizarStockYPrecio(diccionario:dict[str,dict[str,float | int]],nombre:str,precio:float,cantidad:int): #-> dict[str,dict[str,float | int]]:
     if nombre in inventario1:
-        inventario1[nombre]["Precio"] = precio
-        inventario1[nombre]["Cantidad"] = cantidad
+        inventario1[nombre]["Precio"] += precio
+        inventario1[nombre]["Cantidad"] += cantidad
         return inventario1
     else:
         return "El producto no esta en el inventario"
     
 #print(actualizarStockYPrecio("camisa roja",7000,5))
+actualizarStockYPrecio(inventario1,"camisa",0.0,10)
 
 def calcularValorInventario(inventario:dict[str,dict[str,float | int]]) -> float:
     valorInventario:int=0
@@ -72,4 +76,5 @@ def calcularValorInventario(inventario:dict[str,dict[str,float | int]]) -> float
         valorInventario += producto
     return valorInventario
 
-#print(calcularValorInventario(inventario1))
+print(inventario1)
+print(calcularValorInventario(inventario1))
