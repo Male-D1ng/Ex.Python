@@ -1,4 +1,4 @@
-0from typing import TextIO 
+from typing import TextIO 
 import csv
 #el archivo csv se ve como : nro de LU ( str ) , materia ( str ) , fecha ( str ) , nota ( float )
 def contarlineas(lu : str) -> int:
