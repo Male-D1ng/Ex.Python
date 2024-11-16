@@ -41,29 +41,37 @@ print(agrupar_por_longitud("archivo.txt"))
 
 #ej 17 calcular promedio por estudiante
 
+#FUNCION RE IMPORTANTE ; PERTENECE PARA DICCIONARIOS
+def pertenece(elem:str,lista:list[str])->bool:
+    res:bool=False
+    for x in lista:
+        if x == elem:
+            res = True
+    return res
+
 def calcular_promedio_por_estudiante (boletin:list[tuple[str,float]])->dict[str,float]:
-    notas_estudiantes:dict[str,list[int]] = {}
     promedios_estudiante:dict[str,float] = {}
-
+    
     for estudiante in boletin:
-        if estudiante[0] in notas_estudiantes:
-            notas_estudiantes[estudiante[0]].append(estudiante[1])
-        else:
-            notas_estudiantes[estudiante[0]] = [estudiante[0]]
+        if not pertenece(estudiante[0],promedios_estudiante.keys()):
+            calcular_promedio: float = promedio(estudiante[0],boletin)
+            promedios_estudiante [estudiante[0]] = calcular_promedio #le asigno a ese estudiante el promedio
         
-    for estudiante,notas in notas_estudiantes.items():
-        promedios_estudiante[estudiante] = promedio(notas)
-
     return promedios_estudiante
 
-def promedio(numeros:list[int])-> int:
-    longitud = len(numeros)
+def promedio(estudiante:str,numeros:list[tuple[str,float]])-> float:
+    longitud = 0
     suma = 0
-
-    for numero in numeros:
-        suma += numero
+    for notas in numeros:
+        if notas[0] == estudiante:
+            suma = suma + notas[1]
+            longitud = longitud + 1
 
     return suma/longitud
+
+notas = [["p1",2],["p2",5],["p1",6],["p3",10],["p3",10]]
+print(calcular_promedio_por_estudiante(notas))
+
 
 #ej 18 diccionarios : la palabra mas frecuente
 
