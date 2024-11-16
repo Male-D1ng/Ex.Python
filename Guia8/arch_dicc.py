@@ -65,6 +65,45 @@ def promedio(numeros:list[int])-> int:
 
     return suma/longitud
 
+#ej 18 diccionarios : la palabra mas frecuente
+
+#ej 19 diccionarios : historial de navegacion
+
+from queue import LifoQueue as Pila
+
+historiales: dict = {}
+
+def visitar_sitio(historiales:dict, usuario:str, sitio:str) -> None:
+    if not usuario in historiales:
+         historiales[usuario] = Pila ()
+        
+    for usuario in historiales.keys():
+         historiales[usuario].put(sitio)
+        
+    return historiales
+
+print(visitar_sitio(historiales, "anita", "Sitio1"))
+print(visitar_sitio(historiales, "marcos", "Sitio1"))
+print(visitar_sitio(historiales, "anita", "Sitio3"))
+print(visitar_sitio(historiales, "marcos", "Sitio2"))
+
+
+def navegar_atras(historiales:dict, usuario:str) -> None:
+    for pilas in historiales.values():
+        paux = Pila()
+        while not pilas.empty():
+            p:Pila[str] = historiales[usuario]
+            sitio_actual:str = p.get()
+            sitio_anterior:str = p.get()
+            paux.put(sitio_actual)
+            paux.put(sitio_anterior)
+        while not paux.empty():
+            pilas.put(paux.get())
+    return historiales
+
+print(navegar_atras(historiales, "anita"))
+print(navegar_atras(historiales, "marcos"))
+
 
 #ej 20 diccionarios : actualizar stock
 
