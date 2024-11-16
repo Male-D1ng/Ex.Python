@@ -18,6 +18,7 @@ def sumar_uno_dicc (palabra:str,diccionario:dict[int,int]):
     else:
         diccionario[len(palabra)] = 1
 
+#ej 16 diccionarios: agrupar por longitud
 def agrupar_por_longitud (nombre:str)->dict:
     diccionario:dict[int,int] = {}
     archivo:TextIO = open(nombre,'r')
@@ -38,10 +39,12 @@ def agrupar_por_longitud (nombre:str)->dict:
 
 print(agrupar_por_longitud("archivo.txt"))
 
+
+#ej 20 diccionarios : actualizar stock
+
 inventario1:dict[str,dict[str,int]]= {"camisa roja" : {"Precio" : 5000, "Cantidad" : 10}, "jean oscuro": {"Precio" : 7000,"Cantidad" : 10}}
 
-
-def agregarProducto(inventario:dict[str,dict[str,int]],nombre:str,precio:int,cantidad:int) -> dict[str,dict[str,int]]:        
+def agregarProducto(inventario:dict[str,dict[str,[float,int]],nombre:str,precio:float,cantidad:int) -> dict[str,dict[str,[float,int]]:        
     d:dict[str,int] = {"Precio" : 0,"Cantidad" : 0}
     d["Precio"] += precio
     d["Cantidad"] += cantidad
@@ -50,7 +53,7 @@ def agregarProducto(inventario:dict[str,dict[str,int]],nombre:str,precio:int,can
 
 #print(agregarProducto(inventario1,"jean",5000,5))
 
-def actualizarStockYPrecio(nombre:str,precio:int,cantidad:int) -> dict[str,dict[str,int]]:
+def actualizarStockYPrecio(nombre:str,precio:int,cantidad:int) -> dict[str,dict[str,[float,int]]:
     if nombre in inventario1:
         inventario1[nombre]["Precio"] = precio
         inventario1[nombre]["Cantidad"] = cantidad
@@ -60,7 +63,7 @@ def actualizarStockYPrecio(nombre:str,precio:int,cantidad:int) -> dict[str,dict[
     
 #print(actualizarStockYPrecio("camisa roja",7000,5))
 
-def calcularValorInventario(inventario:dict[str,dict[str,int]]) -> float:
+def calcularValorInventario(inventario:dict[str,dict[str,[float,int]]) -> float:
     valorInventario:int=0
     for nombre, cantidadPrecio in inventario.items():
         precio= inventario[nombre]["Precio"]
