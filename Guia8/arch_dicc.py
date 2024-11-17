@@ -125,7 +125,7 @@ print("la palabra mas frecuente es: ", laPalabraMasFrecuente("archivos_palabras.
 
 from queue import LifoQueue as Pila
 
-historiales: dict = {}
+#historiales: dict = {}
 
 def visitar_sitio(historiales:dict, usuario:str, sitio:str) -> None:
     if not usuario in historiales:
