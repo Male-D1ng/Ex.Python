@@ -136,11 +136,24 @@ def visitar_sitio(historiales:dict, usuario:str, sitio:str) -> None:
         
     return historiales
 
+"""no imprime la pila
 print(visitar_sitio(historiales, "anita", "Sitio1"))
 print(visitar_sitio(historiales, "marcos", "Sitio1"))
 print(visitar_sitio(historiales, "anita", "Sitio3"))
 print(visitar_sitio(historiales, "marcos", "Sitio2"))
+"""
 
+p = Pila()
+p.put("google.com")
+p.put("youtube.com")
+p.put("web.whatsapp.com")
+
+
+historiales: dict[str, Pila[str]] = {"dz1" : p}    
+visitar_sitio(historiales, "dz1", "twitch.tv")
+print(historiales["dz1"].queue)
+#navegar_atras(historiales, "dz1")
+#print(historiales["dz1"].queue)
 
 def navegar_atras(historiales:dict, usuario:str) -> None:
     for pilas in historiales.values():
@@ -171,9 +184,10 @@ def agregarProducto(inventario:dict[str,dict[str,float | int]],nombre:str,precio
     inventario[nombre] = d
     return inventario
 
-#print(agregarProducto(inventario1,"jean",5000,5))
+print(agregarProducto(inventario1,"jean",5000,5))
 agregarProducto(inventario1,"camisa",20.0,50)
 agregarProducto(inventario1,"pantalon",30.0,30)
+
 
 """
 def actualizarStockYPrecio(diccionario:dict[str,dict[str,float | int]],nombre:str,precio:float,cantidad:int): #-> dict[str,dict[str,float | int]]:
