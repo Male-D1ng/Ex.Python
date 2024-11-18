@@ -173,23 +173,50 @@ def buscar_nota_minima(c : Cola[str,int]) -> int:
 
 
 
-def esta_bien_balanceada(s: str) -> bool:
-    res:bool= True
-    p:Pila =Pila()
-    parentesis_abiertos: int = 0
-    for letra in s[::-1]:
-        p.put(letra)
-    while not p.empty():
-        letra_sacada = p.get()
-        if letra_sacada== "(":
-            parentesis_abiertos +=1
-        if letra_sacada== ")":
-            parentesis_abiertos -=1
-        if parentesis_abiertos < 0:
-            res= False
-    if parentesis_abiertos > 0:
-        res= False
-    return res
+
+#EJ11_PARTE_P
+
+def formula_bien_balanceada(formula: str) -> bool:
+
+    p:Pila[str] = Pila()
+
+    for c in formula:
+        if c == "(" or c == ")":
+            p.put(c)
+    
+    n: int = 0
+
+    while not p.empty() and n >= 0:
+         parentesis = p.get()
+
+         if parentesis == ')':
+              n += 1
+         elif parentesis == '(':
+              n -= 1
+
+    return n == 0
+            
+print(formula_bien_balanceada("3*(5*5)-(5-4)"))
+#formula_bien_balanceada("7((3/7)")
+#formula_bien_balanceada("(10*(-1)))")
+#formula_bien_balanceada("(4*(-1)))")
+#formula_bien_balanceada("))9+7((")
+
+
+def esta_bien_balanceada (s:str)-> bool:
+    p = Pila ()
+    for str in s: 
+        if str == '(':
+            p.put(str)
+        elif str == ')':
+            if p.empty():
+                return False
+            p.get(str)
+    if p.empty():
+        return True
+    else:
+        return False
+print('la formula esta balanceada: ',esta_bien_balanceada('1 + (2 x 3 - (20 / 5))'))
 
 
 
