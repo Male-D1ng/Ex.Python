@@ -109,6 +109,236 @@ print("el maximo es ",buscar_el_maximo(c))
 print("el maximo_v2 es ",buscar_el_maximo_v2(c))
 
 
+p = Pila()
+p.put(1)
+p.put(2)
+p.put(3)
+p.put(7)
+p.put(3)
+p.put(4)
+
+c = Pila()
+c.put(-1)
+c.put(-2)
+c.put(-3)
+c.put(-7)
+c.put(-3)
+c.put(-4)
+print("el maximo es ",buscar_el_maximo(p))
+print("el maximo_v2 es ",buscar_el_maximo_v2(c))
+
+#ej1.4 buscar_nota_maxima, devuelve una tupla dnde aparece la maxima nota en la segunda componente de la tupla 
+def buscar_nota_maxima (p : Pila[tuple[str,int]]) -> tuple[str,int]:
+    paux: Pila[tuple [str,int]] = Pila()
+    if not p.empty():
+        maximo: tuple[str,int] = p.get()
+        paux.put(maximo)
+    while not p.empty():
+        elem: tuple[str,int] = p.get()
+        paux.put(elem)
+        if elem[1] > maximo[1]:
+            maximo = elem
+    while not paux.empty():
+        f = paux.get()
+        p.put(f)
+    return maximo
+
+#ej5 esta_bien_balanceada
+#def esta_bien_balanceada (s: str) -> bool:
+def formula_bien_balanceada(formula: str) -> bool:
+
+    p:Pila[str] = Pila()
+
+    for c in formula:
+        if c == "(" or c == ")":
+            p.put(c)
+    
+    n: int = 0
+
+    while not p.empty() and n >= 0: #me fijo que la cantidad sea siempre 0 y eso solo pasa si hay una de cada corchetes
+         parentesis = p.get()
+
+         if parentesis == ')':
+              n += 1
+         elif parentesis == '(':
+              n -= 1
+
+    return n == 0
+            
+print("esta bien balanceada? =",formula_bien_balanceada("3*(5*5)-(5-4)"))
+#formula_bien_balanceada("7((3/7)")
+#formula_bien_balanceada("(10*(-1)))")
+#formula_bien_balanceada("(4*(-1)))")
+#formula_bien_balanceada("))9+7((")
+
+
+def esta_bien_balanceada (s:str)-> bool:
+    p = Pila ()
+    for str in s: 
+        if str == '(':
+            p.put(str)
+        elif str == ')':
+            if p.empty():
+                return False
+            p.get(str)
+    if p.empty():
+        return True
+    else:
+        return False
+print('la formula esta balanceada: ',esta_bien_balanceada('1 + (2 x 3 - (20 / 5))'))
+
+#ej6 buscar_minimo, version min de buscar maximo
+def buscar_minimo (p:Pila[int])->int:
+    paux:Pila[int]=Pila() #creo una p aux vacia
+    minimo:int=p.get()
+    paux.put(minimo) #ya lo voy guardando en la auxiliar
+    while not p.empty():
+        elem:int=p.get()
+        paux.put(elem)
+        if elem<minimo:
+            minimo = elem
+    while not paux.empty():
+        p.put(paux.get())
+
+    return minimo
+
+p = Pila()
+p.put(1)
+p.put(2)
+p.put(3)
+p.put(7)
+p.put(3)
+p.put(4)
+
+print("el minimo es", buscar_minimo(p))
+
+#ej7 intercalar dos pilas en una sola, el tope de la pila rta sera el tope de la pila2, hay q recorrer dos veces para que queden en el orden apropiado
+def intercalar (p:Pila[int],q:Pila[int])-> Pila[int]:
+    paux:Pila[int]=Pila()
+    qaux:Pila[int]=Pila()
+    s:Pila[int]=Pila()
+    while not p.empty() and not q.empty():
+        m = q.get()
+        qaux.put(m)
+        s.put(m)
+        e = p.get()
+        paux.put(e)
+        s.put(e)
+        
+    while not paux.empty():
+        g = paux.get()
+        p.put(g)
+
+    while not qaux.empty():
+        h = qaux.get()
+        q.put(h)
+
+    return s
+
+
+p = Pila()
+p.put(1)
+p.put(2)
+p.put(3)
+p.put(7)
+p.put(3)
+p.put(4)
+
+q = Pila()
+q.put(-1)
+q.put(-2)
+q.put(-3)
+q.put(-7)
+q.put(-3)
+q.put(-4)
+
+s=intercalar(p,q)
+mostrar_elems_pila(s)
+
+#ej auxiliar MUY IMPORTANTE, LA INVERTIDA DE LAS PILAS
+def invertida(p:Pila[int])->Pila[int]:
+    paux:Pila[int]=Pila()
+    q:Pila[int]=Pila()
+    n:int=0
+    while not p.empty():
+        e=p.get(n)
+        paux.put(e)
+        q.put(e)
+        n+=1
+    while not paux.empty():
+        e=paux.get()
+        p.put(e)
+
+    return q
+
+p = Pila()
+p.put(1)
+p.put(2)
+p.put(3)
+p.put(7)
+p.put(3)
+p.put(4)
+
+
+h = invertida(p)
+mostrar_elems_pila(h)
+f = h.get(1)
+print("el primero ahora es:",f)
+print("y la original se ve asi:")
+mostrar_elems_pila(p)
+y = p.get(1)
+print("el primero ahora es:",y)
+
+
+
+# 2)COLAS
+from queue import Queue as Cola
+
+#ej8 generar_nros_al_azar version Cola
+def generar_azar_de_nros(cantidad:int,desde:int,hasta:int)->Cola[int]:
+    c:Cola[int]=Cola() #inicio una cola vacia
+    while cantidad != 0:
+        elem = random.randint(desde,hasta)
+        c.put(elem)
+        cantidad -=1
+        print(elem)
+    return c
+
+c=Cola()
+desde = 1
+hasta = 9
+cantidad = 5
+print("asi se ve una cola :")
+h = generar_azar_de_nros(cantidad,desde,hasta)
+f = h.get(1)
+print("el primero es : ",f)
+
+
+#ej9 cantidad_de_elementos
+def cantidad_elementos(c:Cola[int])->int:
+    caux:Cola[int]=Cola()
+    cantidad:int = 0
+    while not c.empty():
+        elem=c.get()
+        caux.put(elem)
+        cantidad += 1
+
+    while not caux.empty():
+        e = caux.get()
+        c.put(e)
+
+    return cantidad
+
+c = Cola()
+c.put(5)
+c.put(3)
+c.put(6)
+c.put(9)
+c.put(8)
+c.put(6)
+print("la cantidad de elementos es:",cantidad_elementos(c))
+
+
 # 2)COLAS
 
 #ej 2.13 armar_secuencia_bingo() 
