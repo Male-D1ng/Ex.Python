@@ -99,3 +99,27 @@ print(cantidad_digitos (100))
 str(45124124)
 
 int('A')
+
+
+ 
+
+def matriz_pseudo_ordenada (matriz :list[list[int]])->list[list[int]]:
+    filas:list[list[int]]=matriz
+    l = len(matriz)
+    columna = []
+    n:int=0
+    for i in range(0,l,1):
+        nro_columna=[]
+        lista:list[int]=filas[i]
+        for j in range(len(lista)):
+                nro_columna.append(matriz[i][j])
+        columna.append(nro_columna)
+    return columna 
+
+
+l = [[2,3,4,5],
+     [3,4,5,6],
+     [4,5,6,7]]
+
+print("esta pseudo ordenada? =",matriz_pseudo_ordenada(l)) 
+            
