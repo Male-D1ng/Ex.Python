@@ -1,5 +1,6 @@
 from queue import Queue as Cola
 
+
 # Ejercicio 1
 def gestion_notas(notas_estudiante_materia: list[tuple[str, str, int]]) -> dict[str, list[tuple[str,int]]]:
     notas_estudiantes : dict[str,list[tuple[str, int]]] = {}
