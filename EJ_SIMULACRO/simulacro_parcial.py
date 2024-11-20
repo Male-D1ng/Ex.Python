@@ -1,4 +1,3 @@
-
 from queue import Queue as Cola
 
 """
