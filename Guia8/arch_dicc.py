@@ -80,7 +80,7 @@ print(calcular_promedio_por_estudiante(notas))
 #ej 18 diccionarios : la palabra mas frecuente
 
 #FUNCION MUY IMPORTANTE PARA ARCHIVOS Y DICCIONARIOS
-def obtener_palabras(texto: str) -> list[str]: # supongamos que las palabras están sólo separadas por espacios (o saltos de línea)
+def obtener_palabras(texto: str) -> list[str]: # supongamos que las palabras están sólo separadas por espacios (o saltos de línea), REEMPLAZARIA A SPLIT
     palabras: list[str] = []
     palabra_actual: str = ''
     for c in texto:
