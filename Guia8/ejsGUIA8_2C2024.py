@@ -427,12 +427,12 @@ intercolar(c,d)
 from queue import Queue as Cola
 def armar_secuencia_bingo() -> Cola[int]:
     cola: Cola[int] = Cola()
-    lista: list[int] = list(range(0,10)) #lo transforma en una lista
+    lista: list[int] = list(range(0,100)) #lo transforma en una lista
     random.shuffle(lista) #siempra da nuevos nros
     #print("el largo de la lista es: ", len(lista))
     #print(lista)
-    for i in range(len(lista)):
-        cola.put(lista[i])
+    for i in lista:
+        cola.put(i)
     return cola
 
  
@@ -462,8 +462,8 @@ def pertenece(elem: int, lista: list[int]) -> bool:
             res = True
     return res 
 
-def mostrar_elems_cola(p:Pila[int]): #in
-    paux:Pila[int] = Cola()
+def mostrar_elems_cola(p:Cola[int]): #in
+    paux:Cola[int] = Cola()
     while not p.empty():
         elem: int = p.get()
         print(elem)
