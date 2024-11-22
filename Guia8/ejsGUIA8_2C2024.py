@@ -14,6 +14,7 @@ def generar_nros_al_azar(cantidad:int,desde:int,hasta:int)-> Pila[int]:
           n -= 1
     return p
 
+
 #FUNCION PARA IMPRIMIR PILAS Y COLAS 
 def impresora (p:Pila[int])-> None: #tbien podria devolver una lista 
     paux:Pila[int]= Pila()
@@ -64,6 +65,31 @@ print ("Mostrar de nuevos eltos pila")
 
 
 
+#ej2 cantidad_elementos
+def cantidad_elementos(p:Pila[int])-> int: #es de tipo in asi q los parametros de entrada si se pueden modificar pero dps hay q restaurarlos
+    paux:Pila[int]=Pila()#paso para restaurarla
+    cantidad:int = 0
+    while not p.empty(): #paso para poder recorrer la lista mientras no este vacia
+        elemento = p.get()
+        cantidad +=1
+        paux.put(elemento)
+    while not paux.empty():
+        p.put(paux.get())
+    return cantidad 
+
+
+
+#ej3 buscar_el_maximo
+def generar_nros(cantidad:int,desde:int,hasta:int)-> Pila[int]: 
+    p:Pila[int]= Pila() 
+    n = cantidad
+    nro:int=desde
+    while n > 0 and nro < hasta:
+        p.put(nro)
+        nro +=1
+        n -= 1
+    return p
+    
 
 
 # ej 1.3 buscar_el_maximo
