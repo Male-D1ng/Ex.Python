@@ -339,19 +339,128 @@ c.put(6)
 print("la cantidad de elementos es:",cantidad_elementos(c))
 
 
-# 2)COLAS
+#ej10 buscar el maximo de una cola y que devuelva un int
 
-#ej 2.13 armar_secuencia_bingo() 
+
+def buscar_maximo (c: Cola[int])->int:
+    caux:Cola[int]=Cola()
+    maximo:int=c.get()
+    caux.put(maximo)
+    while not c.empty():
+        elem=c.get()
+        caux.put(elem)
+        if maximo<elem:
+            maximo=elem
+    while not caux.empty():
+        c.put(caux.get())
+    return maximo
+
+c=Cola()
+c.put(2)
+c.put(58)
+c.put(5)
+c.put(6)
+c.put(7)
+print("el maximo de la cola es",buscar_maximo(c))
+
+#ej11 buscar nota minima de una cola y devolver la tupla donde esta la nota minima
+def buscar_nota_minima (c:Pila[tuple[str,int]])->tuple[str,int]:
+    caux:Pila[tuple[str,int]]=Pila()
+    minimo:tuple[str,int]=c.get()
+    caux.put(minimo)
+    while not c.empty():
+        elem=c.get()
+        caux.put(elem)
+        if minimo>elem:
+            minimo=elem
+    while not caux.empty():
+        c.put(caux.get())
+    return minimo
+
+c=Cola()
+c.put(("fisica",58))
+c.put(("mate",5))
+c.put(("arte",2))
+c.put(("geo",6))
+c.put(("lengua",7))
+print("el minimo de la cola es",buscar_nota_minima(c))
+
+#ej12 intercalar dos colas, el primer elemento de la rtado es el primer elem de la c1
+def intercolar(c: Cola[int], d: Cola[int])->Cola[int]:
+    caux:Cola[int]=Cola()
+    daux:Cola[int]=Cola()
+    res:Cola[int]=Cola()
+    while not c.empty() and not d.empty():
+        elem1=c.get()
+        res.put(elem1)
+        print(elem1)
+        caux.put(elem1)
+        elem2=d.get()
+        res.put(elem2)
+        print(elem2)
+        daux.put(elem2)
+    while not caux.empty() and not daux.empty():
+        c.put(caux.get())
+        d.put(daux.get())
+    return res
+    
+
+c=Cola()
+c.put(2)
+c.put(58)
+c.put(5)
+c.put(6)
+c.put(7)
+
+d=Cola()
+d.put(26)
+d.put(58)
+d.put(55)
+d.put(68)
+d.put(57)
+
+print("cola intercalado por c y d =")
+intercolar(c,d)
+
+
+#ej13 armar_secuencia_bingo() 
 from queue import Queue as Cola
 def armar_secuencia_bingo() -> Cola[int]:
     cola: Cola[int] = Cola()
-    lista: list[int] = list(range(0,10))
-    random.shuffle(lista)
+    lista: list[int] = list(range(0,10)) #lo transforma en una lista
+    random.shuffle(lista) #siempra da nuevos nros
     #print("el largo de la lista es: ", len(lista))
     #print(lista)
     for i in range(len(lista)):
         cola.put(lista[i])
     return cola
+
+ 
+def jugarCartonDeBingo(carton: list[int], bolillero: Cola[int]) -> int:
+    res: int = 0
+    bolillasCarton: int = 0
+    bolAux: Cola[int] = Cola()
+    while bolillasCarton < len(carton):
+        bolilla: int = bolillero.get()
+        bolAux.put(bolilla)
+        if pertenece(bolilla, carton):
+            bolillasCarton = bolillasCarton + 1
+        res = res + 1
+
+    while not bolillero.empty():
+        bolAux.put(bolillero.get())
+    
+    while not bolAux.empty():
+        bolillero.put(bolAux.get())
+
+    return res
+
+def pertenece(elem: int, lista: list[int]) -> bool:
+    res: bool = False
+    for x in lista:
+        if x == elem:
+            res = True
+    return res 
 
 def mostrar_elems_cola(p:Pila[int]): #in
     paux:Pila[int] = Cola()
@@ -365,6 +474,12 @@ def mostrar_elems_cola(p:Pila[int]): #in
 
 bolillero: Cola[int] = armar_secuencia_bingo()
 mostrar_elems_cola(bolillero)
+# si queremos mostrar los valores, en orden, del bolillero
+carton = [20,10,5,7,99,15,25,30,42,11,47,69] #creamos un carton con 12 elementos
+res:int = jugarCartonDeBingo(carton, bolillero)
+print("Para ganar con el carton ", carton, "se necesitaron ", res, "jugadas")
+
+
 
 # 3) DICCIONARIOS 
 
