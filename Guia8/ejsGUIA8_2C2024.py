@@ -479,6 +479,109 @@ carton = [20,10,5,7,99,15,25,30,42,11,47,69] #creamos un carton con 12 elementos
 res:int = jugarCartonDeBingo(carton, bolillero)
 print("Para ganar con el carton ", carton, "se necesitaron ", res, "jugadas")
 
+#ej14 n_pacientes_urgentes
+"""Ejercicio 14. Vamos a modelar una guardia de un hospital usando una cola donde se van almacenando los pedidos de atenci´on
+para los pacientes que van llegando. A cada paciente se le asigna una prioridad del 1 al 10 (donde la prioridad 1 es la mas urgente
+y requiere atenci´on inmediata) junto con su nombre y la especialidad m´edica que le corresponde.
+Implementar la funci´on n pacientes urgentes(in c : Cola[tuple[int, str, str]]) → int que devuelve la cantidad de pacien-
+tes de la cola que tienen prioridad en el rango [1, 3]
+"""
+from queue import Queue as Cola
+
+def n_pacientes_urgentes(c : Cola[tuple[int, str, str]])-> int:
+    caux:Cola[tuple[int, str, str]]=Cola()
+    res:int=0
+    while not c.empty():
+        elem:tuple[int, str, str]=c.get()
+        caux.put(elem)
+        if elem[0]==1 or elem[0]==2 or elem[0]==3:
+            res +=1
+    while not caux.empty():
+        c.put(caux.get())
+    return res
+
+c=Cola()
+c.put((1,"gg","hh"))
+c.put((2,"gg","hh"))
+c.put((5,"gg","hh"))
+c.put((7,"gg","hh"))
+c.put((1,"gg","hh"))
+c.put((3,"gg","hh"))
+c.put((2,"gg","hh"))
+c.put((9,"gg","hh"))
+c.put((10,"gg","hh"))
+c.put((3,"gg","hh"))
+c.put((2,"gg","hh"))
+
+print("la cantidad de pacientes urgentes es =",n_pacientes_urgentes(c))
+
+#ej15 
+"""a gerencia de un banco nos pide modelar la atenci´on de los clientes usando una cola donde se van registrando
+los pedidos de atenci´on. Cada vez que ingresa una persona a la entidad, debe completar sus datos en una pantalla que est´a a la
+entrada: Nombre y Apellido, DNI, tipo de cuenta (si es preferencial o no) y si tiene prioridad por ser adulto +65, embarazada o
+con movilidad reducida (prioridad si o no).
+La atenci´on a los clientes se da por el siguiente orden: primero las personas que tienen prioridad, luego las que tienen cuenta
+bancaria preferencial y por ´ultimo el resto. Dentro de cada subgrupo de clientes, se respeta el orden de llegada.
+1. Dar una especificaci´on para el problema planteado.
+2. Implementar atencion a clientes(in c : Cola[tuple[str, int, bool, bool]]) → Cola[tuple[str, int, bool, bool]] que da-
+da la cola de ingreso de clientes al banco devuelve la cola en la que van a ser atendidos."""
+
+def impresora(c:Cola[int])->Cola[int]:
+    caux:Cola[int]=Cola()
+    while not c.empty():
+        elem=c.get()
+        caux.put(elem)
+        print(elem)
+    return c
+
+def atencion_a_clientes(c : Cola[tuple[str, int, bool, bool]])-> Cola[tuple[str, int, bool, bool]]:
+    caux:Cola[tuple[str, int, bool, bool]]=Cola()
+    colaP:Cola[tuple[str, int, bool, bool]]=Cola()
+    colaBP:Cola[tuple[str, int, bool, bool]]=Cola()
+    colaResto:Cola[tuple[str, int, bool, bool]]=Cola()
+    res:Cola[tuple[str, int, bool, bool]]=Cola()
+    while not c.empty():
+        elem:tuple[str, int, bool, bool]=c.get()
+        caux.put(elem)
+        if elem[3]==True:
+            colaP.put(elem)
+        elif elem[2] == True:
+            colaBP.put(elem)
+        else:
+            colaResto.put(elem)
+
+    #impresora(colaP)
+    #impresora(colaBP)
+    #impresora(colaResto)
+
+    while not colaP.empty():
+        res.put(colaP.get())
+    while not colaBP.empty():
+        res.put(colaBP.get())
+    while not colaResto.empty():
+        res.put(colaResto.get())
+    while not caux.empty():
+        c.put(caux.get())
+     
+    return res 
+
+
+c=Cola()
+c.put(("gg",1,True,True))
+c.put(("pg",8,True,False))
+c.put(("Ug",2,False,True))
+c.put(("gg",3,True,True))
+c.put(("gE",4,True,True))
+c.put(("Kg",5,False,True))
+c.put(("Ñg",9,True,False))
+c.put(("Dg",11,False,False))
+c.put(("Sg",6,True,True))
+c.put(("Qg",10,True,False))
+c.put(("Vg",7,False,True))
+
+print("la cola res se ve asi =")
+f = atencion_a_clientes(c)
+impresora(f)
 
 
 # 3) DICCIONARIOS 
