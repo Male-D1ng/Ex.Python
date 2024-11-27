@@ -1,0 +1,396 @@
+<h1>Parcial - tema1</h1>
+<p>Nota: 1.0 / 10.0 (DESAPROBADO)</p>
+<pre><code>puntaje ej1: 0.0
+puntaje ej2: 0.0
+puntaje ej3: 0.0
+puntaje ej4: 0.0
+puntaje ej5: 1
+</code></pre>
+<h2>Datos del alumno</h2>
+<p>Nombre: Malena D'Ingianna</p>
+<p>DNI: 41680327</p>
+<p>LU: 244/22</p>
+<p>Maquina: 66-06</p>
+<h2>Enunciado</h2>
+<!doctype html>
+<html>
+<head>
+  <link rel="icon" href="data:,">
+  <link href="css/style.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <style>
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .conditions {
+        margin-left: 20px;
+    }
+</style>
+</head>
+
+<body style="width: 50%;margin: 1% auto;">
+
+<div> 
+<h1> Parcial Python - Tema 1 </h1>
+
+<h2> Importante </h2>
+
+<ul>
+  <li>El parcial se aprueba con 6 puntos</li>
+  <li>Template de funciones a implementar <a href="#" onclick="forceDownload('/parcial/Template_t1.py','Template_t1.py');">acá</a><br></li>
+  <li>Lista de funciones permitidas <a href="/static/python_permitidas.html">acá</a></li>
+  <li>Para testear el código pueden usar <a href="#" onclick="forceDownload('/parcial/tema1-test.py', 'tema1-test.py')">este</a> archivo que ya cuenta con todo lo necesario para desarrollar sus propios tests (este archivo no se entrega)</li>
+</ul>
+
+Implementar las siguientes especificaciones en Python.
+
+<form name="form1" action="/submit_examen" method="post" enctype="multipart/form-data" onsubmit="return validaciones(event)">
+
+  <hr style="width: 100%;">
+  <h3 style="color:#1A5276">1) Ejercicio 1 [2.25 puntos]</h3>
+
+<p>Implementar la función subsecuencia_mas_larga especificada.</p>
+
+<p> problema subsecuencia_mas_larga (in <i>v</i>: seq⟨Z⟩) : ZxZ {<br>
+  &nbsp; <strong>requiere:</strong> { La longitud de <i>v</i> es distinto de 0 }<br>
+  &nbsp; <strong>asegura:</strong> { Sea x la primera subsecuencia más larga en v tal que vale todos_consecutivos(x), la primera componente de res es igual a |x| y la segunda es igual al índice en v donde comenzaría x }<br>
+}<br>
+</p>
+
+<p> problema todos_consecutivos (in <i>v</i>: seq⟨Z⟩) : Bool {<br>
+  &nbsp; <strong>asegura:</strong> { res == True <==> cada par de elementos adyacentes en <i>v</i> son números consecutivos, es decir, que su diferencia es igual a 1 }<br>
+}<br>
+</p>
+
+  <hr style="width: 100%;">
+  <h3 style="color:#1A5276">2) Ejercicio 2 [2.25 puntos] </h3>
+
+<p>Ana tiene exámenes de respuesta Verdadero ó Falso. 
+  Ella sabe que en cada examen la cantidad de respuestas correctas cuyo valor es Falso es igual a la cantidad de respuestas correctas cuyo valor es Verdadero. 
+  Tenemos el historial de las respuestas de cada exámen dados por Ana en una cola. En cada uno Ana respondió todas las preguntas.</p>
+
+<p> problema mejor_resultado_de_ana (in <i>examenes</i>: Cola⟨ seq⟨Bool⟩ ⟩) : seq⟨Z⟩ {<br>
+  &nbsp; <strong>requiere:</strong>{ Cada elemento de examenes es no vacío y tiene longitud par }<br>
+  &nbsp; <strong>asegura:</strong> { res tiene la misma cantidad de elementos que examenes }<br>
+  &nbsp; <strong>asegura:</strong> { res[i] es igual a la máxima cantidad de respuestas correctas que Ana podría haber respondido en el i-ésimo exámen resuelto en examenes, para 0 <= i < cantidad de elementos de examenes }<br>
+  }<br>
+</p>
+
+<p>
+
+  <hr style="width: 100%;">
+  <h3 style="color:#1A5276">3) Ejercicio 3 [2.25 puntos]</h3>
+
+<p> problema cambiar_matriz(inout <i>A</i>: seq⟨seq⟨Z⟩⟩) {<br>
+  &nbsp; <strong>requiere:</strong> { Todas las filas de <i>A</i> tienen la misma longitud }<br>
+  &nbsp; <strong>requiere:</strong> { El mínimo número que aparece en <i> A </i> es igual a 1 }<br>
+  &nbsp; <strong>requiere:</strong> { El máximo número que aparece en <i>A</i> es igual a #filas de <i>A</i> por #columnas de <i>A</i> }<br>
+  &nbsp; <strong>requiere:</strong> { No hay enteros repetidos en <i>A</i> }<br>
+  &nbsp; <strong>requiere:</strong> { Existen al menos dos enteros distintos en <i>A</i> }<br>
+  &nbsp; <strong>modifica:</strong> { <i>A</i> }<br>
+  &nbsp; <strong>asegura:</strong> { <i>A</i> tiene exactamente las mismas dimensiones que <i>A@pre</i> }<br>
+  &nbsp; <strong>asegura:</strong> { El conjunto de elementos que aparecen en <i>A</i> es igual al conjunto de elementos que aparecen en <i>A@pre</i>  }<br>
+  &nbsp; <strong>asegura:</strong> { A[i][j] != A@pre[i][j] para todo i, j en rango }<br>
+
+  }<br>
+  </p>
+
+
+  <hr style="width: 100%;">
+  <h3 style="color:#1A5276">4) Ejercicio 4 [2.25 puntos]</h3>
+
+
+  <p>Tenemos un texto que contiene palabras. Por simplicidad, las palabras están separadas únicamente por uno o más espacios.</p>
+
+<p> problema palabras_por_vocales (in <i>texto</i>: string): Diccionario⟨Z,Z⟩ {<br>
+  &nbsp; <strong>requiere:</strong> { Si existe una letra vocal en <i>texto</i>, esta no lleva tildes, diéresis, ni ningún otro símbolo }<br>
+  &nbsp; <strong>asegura:</strong> { Si existe una palabra en <i>texto</i> con x vocales en total, x es clave de <i>res</i>  }<br>
+  &nbsp; <strong>asegura:</strong> { Las claves de <i>res</i> representan la cantidad total de vocales de una palabra, y cada valor corresponde a la cantidad de palabras en <i>texto</i> con ese número de vocales. }<br>
+  &nbsp; <strong>asegura:</strong> { Los valores de <i>res</i> son positivos }<br>
+  }<br>
+  </p>
+
+
+<hr style="width: 100%;">
+  <h3 style="color:#1A5276">5) Pregunta teórica (1 punto)</h3>
+
+  <p>Conteste marcando la opción correcta.</p>
+
+      <h4 style="color:#1A5276">¿Por qué en Paradigma Imperativo no existe la transparencia referencial? </h4>
+
+     <p>
+      <input type="radio" name="mchoice_1" id="Aopcion1" value="1" />
+          <label for="Aopcion1">Utilizamos otro mecanismo de repetición de código, en lugar de recursión usamos la iteración (FOR, WHILE, DO WHILE).</label> <br>
+      <input type="radio" name="mchoice_1" id="Aopcion2" value="2" />
+          <label for="Aopcion2">Tenemos una nueva instrucción, la asignación, que nos permite cambiar el valor de una variable</label> <br>
+      <input type="radio" name="mchoice_1" id="Aopcion3" value="3" />
+          <label for="Aopcion3">El orden en que se ejecutan las instrucciones del programa es diferente</label> <br>
+      </p>
+
+  <hr style="width: 100%;">
+  <h3 style="color:#1A5276">Adjunta el archivo con tu solución:</h3>
+  <p><b style="color:red">Solo se puede adjuntar 1 archivo de extensión .py. En caso de haber desarrollado tests propios, no deben ser entregados.</b></p>
+
+  <label for="archivo">Seleccionar archivo a enviar:</label>
+  <input type="file" id="archivo" name="archivo" required accept=".py,text/x-python"/>
+
+  <input type="submit" value="Enviar"
+        style= "background-color: #1A5276; border-radius: 5px;
+                margin-top:10px;padding: 10px 150px;color: #FFFFFF;
+                font-size: 20px;cursor: pointer; width:100%" >
+
+</form>
+</div>
+<script>
+  function validaciones(event) {
+    // Obtiene todos los inputs tipo radio del formulario
+      const radioGroups = document.querySelectorAll('input[type="radio"]');
+      const groupedByName = {};
+
+      // Agrupar radios por su atributo name
+      radioGroups.forEach(radio => {
+        if (!groupedByName[radio.name]) {
+          groupedByName[radio.name] = [];
+        }
+        groupedByName[radio.name].push(radio);
+      });
+
+      // Verificar que cada grupo de radios tenga al menos uno seleccionado
+      for (const groupName in groupedByName) {
+        const radios = groupedByName[groupName];
+        const isChecked = radios.some(radio => radio.checked);
+
+        if (!isChecked) {
+          alert(`Debes seleccionar una opción para la pregunta ${groupName}`);
+          return false; // Detener la validación si falta alguna opción
+        }
+      }
+
+      var confirmacion = confirm("Confirmo que revisé mis respuestas y que quiero entregar mi examen");
+      if (!confirmacion) {
+          event.preventDefault();
+          event.returnValue = false;
+          return false;
+        }
+        event.returnValue = true;
+        return true;
+    }
+
+// registro una funcion para mostrar el archivo cuando se adjunta.
+// de esa forma evitamos que se adjunten otros archivos por error
+document
+  .getElementById('archivo')
+  .addEventListener(
+      'change',
+      function () {
+          var fr = new FileReader();
+          fr.onload = function () {
+              alert(this.result);
+          };
+          fr.readAsText(this.files[0]);
+      }
+  );
+
+// para forzar a bajar el template de pytest y que no se pueda abrir en un nuevo tab
+// (el browser intenta mostrar el codigo como HTML y el formato se ve raro)
+function forceDownload(url, filename) {
+  fetch(url).then(function(t) {
+    return t.blob().then((b) => {
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(b);
+      a.setAttribute("download", filename);
+      a.click();
+    });
+  });
+}
+</script>
+</body>
+
+</html>
+
+<h2>Solucion entregada por el alumno</h2>
+<pre><code>from queue import Queue as Cola
+from queue import LifoQueue as Pila
+
+
+
+# Ejercicio 1
+
+def todos_consecutivos(lista:list[int])-&gt;bool:
+    res:bool=True
+    for e in range(len(lista)-1):
+        if (lista[e] + 1) != lista[e+1] or lista[e] != (lista[e+1] - 1):
+            return False
+    return res 
+
+
+def subsecuencia_mas_larga(v: list[int]) -&gt; tuple[int,int]:
+    longitud = (len(v)-1)
+    indice = 0
+    cantidad = 0
+    lista = []
+    while indice &lt;= longitud:
+        if not todos_consecutivos(lista):
+            lista = []
+            cantidad = 0
+        if  todos_consecutivos(lista) and longitud &gt; indice:
+            lista.append(v[indice])
+            longitud -=1
+            indice+=1
+            cantidad = len(lista)
+
+    return (cantidad,indice-1)
+
+
+print(subsecuencia_mas_larga([2,2,33]))
+
+def maximo_True (examenes:list[bool])-&gt;int:
+    res:int = 0
+    suma:int = 0
+    for e in range (len(examenes)):
+        if examenes[e] == True:
+            suma += 1
+        res = suma
+    return res
+
+
+# Ejercicio 2
+def mejor_resultado_de_ana(examenes: Cola[list[bool]]) -&gt; list[int]:
+    colaux:Cola[list[bool]]=Cola()
+    res:list[int]=[] 
+    while not examenes.empty():
+        elem:list[bool]=examenes.get()
+        colaux.put(elem)
+        max = maximo_True(elem)
+        res.append(max)
+    while not colaux.empty():
+        examenes.put(colaux.get())
+    return res
+
+c= Cola()
+c.put([True])
+c.put([False])
+print(mejor_resultado_de_ana(c))
+
+# Ejercicio 3
+def cambiar_matriz(A: list[list[int]]) -&gt; None:
+    res:list[list[int]]=[]
+    minimo:int = 1
+    maximo:int = (len(A))*(len(A[0]))
+    return res
+
+
+# Ejercicio 4
+def pertenece(lista:list[str],letra:str)-&gt;bool:
+    for e in range(len(lista)):
+        if lista[e] == letra:
+            return True
+
+def palabras_por_vocales(texto: str) -&gt; dict[int, int]:
+    dicc:dict[int,int]={}
+    cantidad_palabras = cuantas_palabras_hay(texto)
+    letras:list[str] = separar_letras(texto)
+    cantidad_letras = len(letras)
+    for letra in dicc.keys():
+        dicc[letra] = cantidad_palabras
+    return dicc
+
+def separar_letras(texto:str)-&gt;list[str]:
+    res:list[str]=[]
+    for e in range(len(texto)):
+        res.append(texto[e])
+    return res
+
+
+def cuantas_palabras_hay(lista:str)-&gt;int:
+    res=0
+    texto = separar_letras(lista)
+    e:int = 0
+    cantidad_palabras = (len(texto)-1)
+    if texto[e] != &quot; &quot;:
+            res += 1
+    while cantidad_palabras &gt; 0:
+        if texto[e] == &quot; &quot;: 
+            res += 1
+        e += 1
+        cantidad_palabras -=1
+    return res 
+
+
+def vocales_por_palabra (texto:str)-&gt;list[int]:
+    res = []
+    lista_letras:list[str] = separar_letras(texto)
+    cantidad_letras = len(lista_letras)
+    vocales = ['a','e','i','o','u']
+    cantidad = 0
+    #cantidad_palabras = cuantas_palabras_hay(texto)-1
+    for e in lista_letras:
+        if pertenece(vocales,e):
+            cantidad += 1
+            cantidad_letras -=1
+        elif e == &quot; &quot; :
+            res.append(cantidad)
+            cantidad_letras -=1
+            cantidad = 0
+        elif not pertenece(vocales,e):
+            cantidad +=0
+            cantidad_letras -=1
+    return res
+
+
+
+
+
+</code></pre>
+<h2>Resultado de la compilacion</h2>
+<pre><code>/bin/sh: 1: Syntax error: Unterminated quoted string
+
+</code></pre>
+<h2>Ejecucion de los tests</h2>
+<h3>tema1-test-ej1.py.compilacion.out</h3>
+<p>Puntaje del ej: 0.0 / 2.25</p>
+<pre><code>Los tests fallaron por TIMEOUT despues de 60 segundos
+Ran 999 tests in 0 seconds
+
+FAILED (failures=999)
+
+</code></pre>
+<h3>tema1-test-ej2.py.compilacion.out</h3>
+<p>Puntaje del ej: 0.0 / 2.25</p>
+<pre><code>Los tests fallaron por TIMEOUT despues de 60 segundos
+Ran 999 tests in 0 seconds
+
+FAILED (failures=999)
+
+</code></pre>
+<h3>tema1-test-ej3.py.compilacion.out</h3>
+<p>Puntaje del ej: 0.0 / 2.25</p>
+<pre><code>Los tests fallaron por TIMEOUT despues de 60 segundos
+Ran 999 tests in 0 seconds
+
+FAILED (failures=999)
+
+</code></pre>
+<h3>tema1-test-ej4.py.compilacion.out</h3>
+<p>Puntaje del ej: 0.0 / 2.25</p>
+<pre><code>Los tests fallaron por TIMEOUT despues de 60 segundos
+Ran 999 tests in 0 seconds
+
+FAILED (failures=999)
+
+</code></pre>
+<h3>mchoice.json-ej5.compilacion.out</h3>
+<p>Puntaje del ej: 1 / 1</p>
+<pre><code>mchoice ej5: respuesta del alumno=2, respuesta correcta=2
+
+Ran 1 test in 0 seconds
+
+OK
+
+</code></pre>
+<p>FIN</p>
